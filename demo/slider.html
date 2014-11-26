@@ -188,16 +188,21 @@
 
             <p>The following are the essential invocations for working with Lectern.Slider:</p>
             <dl class="api">
-                <dt><span class="api-subj">$(...)</span>.lectern('slider', <span class="api-opt">{options}</span>)</dt>
-                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'create', <span class="api-opt">{options}</span>)</dt>
+                <dt><span class="api-subj">$(containers)</span>.lectern('slider', <span class="api-opt">{options}</span>)</dt>
+                <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'create', <span class="api-opt">{options}</span>)</dt>
                 <dd>
                     <p>Create a new slider.</p>
                 </dd>
 
-                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'next')</dt>
+                <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'active')</dt>
+                <dd>
+                    <p>Convenience method to retrieve a jQuery collection of active slides.</p>
+                </dd>
+
+                <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'next')</dt>
                 <dd><p>Programmatically advance a slider to the next slide.</p></dd>
 
-                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'prev')</dt>
+                <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'prev')</dt>
                 <dd><p>Programmatically rewind a slider to the previous slide.</p></dd>
             </dl>
         </section>

@@ -48,6 +48,14 @@
         },
 
         actions: {
+            active: function() {
+                var result = $();
+                this.each(function(idx, container) {
+                    result = result.add(data($(container)).active);
+                });
+                return result;
+            },
+
             create: function(options) {
                 this.each(function(idx, container) {
                     container = $(container);

@@ -79,7 +79,7 @@
                 action = select_action(component);
                 sans = 1;
             }
-            action.apply(this, $(arguments).slice(sans));
+            return action.apply(this, $(arguments).slice(sans));
         }
         else {
             throw 'invalid arguments to $.lectern()';
