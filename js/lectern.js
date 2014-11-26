@@ -16,7 +16,7 @@
             for (canon in self.components) {
                 var component = self.components[canon];
                 auto_queue(component);
-                if (component.init != undefined) {
+                if (component.init !== undefined) {
                     component.init();
                 }
             };
@@ -56,11 +56,6 @@
                     names[i] = component.settings.classes[names[i]];
                 }
                 return element.addClass(names.join(' '));
-            },
-
-            data_or: function(element, key, alt) {
-                var result = element.data(key);
-                return result !== undfined ? result : alt;
             }
         }
     };
@@ -73,10 +68,10 @@
 
 
     function __lectern(canon, arg) {
-        if (typeof canon == 'string') {
+        if ($.type(canon) == 'string') {
             var component = self.components[canon];
             var action, sans;
-            if (typeof arg == 'string') {
+            if ($.type(arg) == 'string') {
                 action = select_action(component, arg);
                 sans = 2;
             }
@@ -93,7 +88,7 @@
 
 
     function auto_queue(component) {
-        if (component.auto_queue != undefined) {
+        if (component.auto_queue !== undefined) {
             $(function() { $(component.auto_queue).lectern(component.canon); });
         }
     }

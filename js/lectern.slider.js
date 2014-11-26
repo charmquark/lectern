@@ -8,9 +8,9 @@
         defaults: {
             classes: {
                 active: 'lectern-slider-active',
-                base: 'lectern-slider-base',
                 canvas: 'lectern-slider-canvas',
                 caption: 'lectern-slider-caption',
+                container: 'lectern-slider-container',
                 hidden1: 'lectern-slider-hidden1',
                 hidden2: 'lectern-slider-hidden2',
                 navigator: 'lectern-slider-navigator',
@@ -49,53 +49,60 @@
 
         actions: {
             create: function(options) {
-                var settings = $.extend(true, {}, self.defaults, options);
-                var slider = {
-                    base: this,
-                    settings: settings
-                };
-                slider.base.addClass(settings.classes.base);
-                slider.caption = 
-                    $(settings.queries.caption, this)
-                    .addClass(settings.classes.caption)
-                ;
-                slider.canvas =
-                    $(settings.queries.canvas, this)
-                    .addClass(settings.classes.canvas)
-                ;
-                slider.slides =
-                    $(settings.queries.slides, slider.canvas)
-                    .addClass([
-                        settings.classes.slide,
-                        settings.classes.hidden1
-                    ].join(' '))
-                ;
-                if (settings.indexClasses) {
-                    slider.slides.each(function(idx, elt) {
-                        $(elt).addClass('slide-' + idx);
-                    });
-                }
+                this.each(function(idx, container) {
+                    container = $(container);
+                    var settings = get_settings(container, options);
+                    var slider = {
+                        container: container,
+                        settings: settings
+                    };
+                    container.addClass(settings.classes.container);
 
-                generate_navigator(slider);
+                    slider.caption = 
+                        $(settings.queries.caption, container)
+                        .addClass(settings.classes.caption)
+                    ;
 
-                slider.active = slider.slides.first()
-                    .removeClass(settings.classes.hidden1)
-                    .addClass(settings.classes.active)
-                ;
-                animate_to(slider.active, 'active', settings);
+                    slider.canvas =
+                        $(settings.queries.canvas, container)
+                        .addClass(settings.classes.canvas)
+                    ;
 
-                data(this, slider);
+                    slider.slides = Lectern.util.add_classes(
+                        slider,
+                        $(settings.queries.slides, slider.canvas),
+                        ['slide', 'hidden1']
+                    );
+
+                    if (settings.indexClasses) {
+                        slider.slides.each(function(idx, elt) {
+                            $(elt).addClass('slide-' + idx);
+                        });
+                    }
+
+                    generate_navigator(slider);
+
+                    slider.active = slider.slides.first()
+                        .removeClass(settings.classes.hidden1)
+                        .addClass(settings.classes.active)
+                    ;
+                    animate_to(slider.active, 'active', settings);
+
+                    data(container, slider);
+                });
                 return this;
             },
 
             next: function() {
                 this.each(function(i, elt) {
                     var slider = data($(elt));
-                    if (slider.active != slider.slides.last()) {
-                        navigate($(slider.slides.get(data(slider.active).index + 1)));
+                    var active = slider.active;
+                    var slides = slider.slides;
+                    if (active != slides.last()) {
+                        navigate($(slides.get(data(active).index + 1)));
                     }
                     else if (slider.settings.wrapAround) {
-                        navigate(slider.slides.first());
+                        navigate(slides.first());
                     }
                 });
             },
@@ -103,11 +110,13 @@
             prev: function() {
                 this.each(function(i, elt) {
                     var slider = data($(elt));
-                    if (slider.active != slider.slides.first()) {
-                        navigate($(slider.slides.get(data(slider.active).index - 1)));
+                    var active = slider.active;
+                    var slides = slider.slides;
+                    if (active != slides.first()) {
+                        navigate($(slides.get(data(active).index - 1)));
                     }
                     else if (slider.settings.wrapAround) {
-                        navigate(slider.slides.last());
+                        navigate(slides.last());
                     }
                 });
             }
@@ -126,14 +135,7 @@
     }
 
 
-    function data(element, arg) {
-        if (arg === undefined) {
-            return element.data('lectern-slider');
-        }
-        else {
-            return element.data('lectern-slider', arg);
-        }
-    }
+    var data = Lectern.generate.data_func(self.canon);
 
 
     function generate_navigator(slider) {
@@ -159,9 +161,15 @@
             });
         });
         nav.children().first().addClass(slider.settings.classes.active);
-        slider.base.append(slider.navigator = nav);
+        slider.container.append(slider.navigator = nav);
         return nav;
     }
+
+
+    var get_settings = Lectern.generate.get_settings_func(
+        self.defaults,
+        ['duration', 'easing', 'indexClasses', 'wrapAround']
+    );
 
 
     function navigate(new_slide) {

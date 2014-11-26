@@ -22,7 +22,37 @@
             position: relative;
         }
 
-        section {
+        dl.api {
+            background-color: #eee;
+            border-radius: 0.5em;
+
+            margin: 0em 2em;
+            padding: 2em 2em;
+        }
+
+        dl.api dt {
+            font-weight: bold;
+
+            font-size: 110%;
+        }
+
+        dl.api .api-opt {
+            color: #484848;
+            font-style: italic;
+
+            font-size: 80%;
+            margin: 0em 0.25em;
+        }
+
+        dl.api .api-subj {
+            color: #663333;
+            font-style: italic;
+
+            font-size: 80%;
+            margin: 0em 0.25em;
+        }
+
+        section.example {
             background-color: #d8d8d8;
 
             margin: 1em 0em;
@@ -46,7 +76,7 @@
             padding: 1em;
         }
 
-        .lectern-slider-base {
+        .lectern-slider-container {
             height: 10em;
 
             margin-bottom: 2em;
@@ -102,13 +132,7 @@
 
     <script id="colorful-script" data-drop-indent="4">
         $(function() {
-            $('#colorful-slider').lectern('slider', {
-                queries: {
-                    caption: '> .caption'
-                },
-                duration: 1000,
-                indexClasses: true
-            });
+            $('#colorful-slider').lectern('slider', {indexClasses: true});
         });
     </script>
 </head>
@@ -119,7 +143,7 @@
     </header>
 
     <main>
-        <section id="example-0-markup" data-drop-indent="12">
+        <section id="example-0-markup" class="example" data-drop-indent="12">
             <div data-lectern-slider>
                 <ul>
                     <li>Slide 0</li>
@@ -139,14 +163,13 @@
             ></pre>
         </section>
 
-        <section>
+        <section class="example">
             <span id="example-1-html" data-drop-indent="16">
-                <div id="colorful-slider">
+                <div id="colorful-slider" data-duration="1000">
                     <ul>
                         <li>Slide 0</li><li>Slide 1</li><li>Slide 2</li><li>Slide 3</li>
                         <li>Slide 4</li><li>Slide 5</li><li>Slide 6</li><li>Slide 7</li>
                     </ul>
-                    <span class="caption">This is a caption.</span>
                 </div>
             </span>
         </section>
@@ -156,6 +179,27 @@
                 id="source-1"
                 data-modules="#example-1-html, #colorful-script, #colorful-style"
             ></pre>
+            <p>Notice that, in addition to passing them to .lectern(), you may specify various
+            options via data attributes.</p>
+        </section>
+
+        <section>
+            <h1>API</h1>
+
+            <p>The following are the essential invocations for working with Lectern.Slider:</p>
+            <dl class="api">
+                <dt><span class="api-subj">$(...)</span>.lectern('slider', <span class="api-opt">{options}</span>)</dt>
+                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'create', <span class="api-opt">{options}</span>)</dt>
+                <dd>
+                    <p>Create a new slider.</p>
+                </dd>
+
+                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'next')</dt>
+                <dd><p>Programmatically advance a slider to the next slide.</p></dd>
+
+                <dt><span class="api-subj">$(...)</span>.lectern('slider', 'prev')</dt>
+                <dd><p>Programmatically rewind a slider to the previous slide.</p></dd>
+            </dl>
         </section>
     </main>
 

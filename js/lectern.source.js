@@ -36,6 +36,7 @@
                         add_module(source, $(elt));
                     });
                 });
+                return this;
             }
         }
     };
@@ -46,15 +47,13 @@
     }
 
 
+    var data = Lectern.generate.data_func(self.canon);
+
+
     var get_settings = Lectern.generate.get_settings_func(
         self.defaults,
-        [
-            'modules'
-        ]
+        ['modules']
     );
-
-
-    var data = Lectern.generate.data_func(self.canon);
 
 
     var module_factories = {
