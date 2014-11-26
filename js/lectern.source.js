@@ -31,9 +31,6 @@
                     data(container, source);
                     container.addClass(settings.classes.container);
 
-                    if (settings.modules === undefined) {
-                        settings.modules = container.data('modules');
-                    }
                     var modules = source.modules = $(settings.modules);
                     modules.each(function(i, elt) {
                         add_module(source, $(elt));
