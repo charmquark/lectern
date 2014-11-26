@@ -90,7 +90,7 @@
     </header>
 
     <main>
-        <section>
+        <section id="example-0-markup">
             <div data-lectern-slider>
                 <ul>
                     <li>Slide 0</li>
@@ -104,18 +104,19 @@
         </section>
         <section class="code">
             <p>The slider above was created entirely by this code:</p>
-            <pre>
-                &lt;div data-lectern-slider&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Slide 0&lt;/li&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Slide 1&lt;/li&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Slide 2&lt;/li&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Slide 3&lt;/li&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Slide 4&lt;/li&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;This is a caption.&lt;/span&gt;
-                &lt;/div&gt;
-            </pre>
+            <pre id="code-0" style="white-space: pre;"></pre>
+            <script>
+                $(function() {
+                    var droppable_indent = 12;
+                    var html = $('#example-0-markup').html();
+                    html = html.split('\n').slice(1, -1);
+                    for (i in html) {
+                        html[i] = html[i].slice(droppable_indent);
+                    }
+                    console.log(html);
+                    $('#code-0').text(html.join('\n'));
+                });
+            </script>
         </section>
 
         <section>
