@@ -11,6 +11,7 @@
         },
 
         init: function() {
+            $.fn.dataOr = __dataOr;
             $.fn.lectern = __lectern;
             for (canon in self.components) {
                 var component = self.components[canon];
@@ -20,7 +21,55 @@
                 }
             };
         },
+
+        generate: {
+            data_func: function(suffix) {
+                var key = 'lectern-' + suffix;
+                return function(element, arg) {
+                    if (arg === undefined) {
+                        return element.data(key);
+                    }
+                    else {
+                        return element.data(key, arg);
+                    }
+                };
+            },
+
+            get_settings_func: function(defaults, list) {
+                return function(container, options) {
+                    var settings = $.extend(true, {}, defaults, options);
+                    for (i in list) {
+                        var key = list[i];
+                        var value = container.data(key);
+                        if (value !== undefined) {
+                            settings[key] = value;
+                        }
+                    }
+                    return settings;
+                };
+            }
+        },
+
+        util: {
+            add_classes: function(component, element, names) {
+                for (i in names) {
+                    names[i] = component.settings.classes[names[i]];
+                }
+                return element.addClass(names.join(' '));
+            },
+
+            data_or: function(element, key, alt) {
+                var result = element.data(key);
+                return result !== undfined ? result : alt;
+            }
+        }
     };
+
+
+    function __dataOr(key, alt) {
+        var result = this.data(key)
+        return result !== undefined ? result : alt;
+    }
 
 
     function __lectern(canon, arg) {
@@ -45,7 +94,7 @@
 
     function auto_queue(component) {
         if (component.auto_queue != undefined) {
-            $(function() { $(component.auto_queue).lectern(canon); });
+            $(function() { $(component.auto_queue).lectern(component.canon); });
         }
     }
 

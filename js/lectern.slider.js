@@ -49,27 +49,28 @@
 
         actions: {
             create: function(options) {
+                var settings = $.extend(true, {}, self.defaults, options);
                 var slider = {
                     base: this,
-                    settings: $.extend(true, {}, self.defaults, options)
+                    settings: settings
                 };
-                slider.base.addClass(slider.settings.classes.base);
+                slider.base.addClass(settings.classes.base);
                 slider.caption = 
-                    $(slider.settings.queries.caption, this)
-                    .addClass(slider.settings.classes.caption)
+                    $(settings.queries.caption, this)
+                    .addClass(settings.classes.caption)
                 ;
                 slider.canvas =
-                    $(slider.settings.queries.canvas, this)
-                    .addClass(slider.settings.classes.canvas)
+                    $(settings.queries.canvas, this)
+                    .addClass(settings.classes.canvas)
                 ;
                 slider.slides =
-                    $(slider.settings.queries.slides, slider.canvas)
+                    $(settings.queries.slides, slider.canvas)
                     .addClass([
-                        slider.settings.classes.slide,
-                        slider.settings.classes.hidden1
+                        settings.classes.slide,
+                        settings.classes.hidden1
                     ].join(' '))
                 ;
-                if (slider.settings.indexClasses) {
+                if (settings.indexClasses) {
                     slider.slides.each(function(idx, elt) {
                         $(elt).addClass('slide-' + idx);
                     });
@@ -78,10 +79,10 @@
                 generate_navigator(slider);
 
                 slider.active = slider.slides.first()
-                    .removeClass(slider.settings.classes.hidden1)
-                    .addClass(slider.settings.classes.active)
+                    .removeClass(settings.classes.hidden1)
+                    .addClass(settings.classes.active)
                 ;
-                animate_to(slider.active, 'active', slider.settings);
+                animate_to(slider.active, 'active', settings);
 
                 data(this, slider);
                 return this;
