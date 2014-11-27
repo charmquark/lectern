@@ -17,9 +17,6 @@
     <script src="../build/js/lectern.source.js" type="text/javascript"></script>
     <script src="../build/js/lectern.slider.js" type="text/javascript"></script>
 
-    <style>
-    </style>
-
     <style id="colorful-style" data-drop-indent="4">
         #colorful-slider .frame-0 { background-color: #333; color: #ccc; z-index: 1; }
         #colorful-slider .frame-1 { background-color: #33c; color: #cc3; z-index: 2; }
@@ -97,7 +94,8 @@
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', <span class="api-opt">{options}</span>)</dt>
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'create', <span class="api-opt">{options}</span>)</dt>
                 <dd>
-                    <p>Create a new slider.</p>
+                    <p>Create a new slider. The slider instance is made available through
+                        <code>.data('lectern-slider')</code> should you need to access it.</p>
                 </dd>
 
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'active')</dt>
@@ -105,11 +103,46 @@
                     <p>Convenience method to retrieve a jQuery collection of active slides.</p>
                 </dd>
 
+                <dt><span class="api-subj">slider</span>.navigate(frame)</dt>
+                <dt><span class="api-subj">slider</span>.navigate(index)</dt>
+                <dd>
+                    <p>Navigate the slider to the requested frame.</p>
+                </dd>
+
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'next')</dt>
+                <dt><span class="api-subj">slider</span>.next()</dt>
                 <dd><p>Programmatically advance a slider to the next frame.</p></dd>
 
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'prev')</dt>
+                <dt><span class="api-subj">slider</span>.prev()</dt>
                 <dd><p>Programmatically rewind a slider to the previous frame.</p></dd>
+            </dl>
+        </section>
+
+        <section>
+            <h1>Options</h1>
+
+            <p>The following options are available &mdash; note this is not an exhaustive list of
+                all the possible settings.</p>
+
+            <dl>
+                <dt>duration</dt>
+                <dd>Default = 500. The duration of slide transitions, in milliseconds.</dd>
+
+                <dt>easing</dt>
+                <dd>Default = "swing". The animation easing prameter.</dd>
+
+                <dt>indexClasses</dt>
+                <dd>Default = false. If enabled, frames will be decorated with classes in the form
+                    <code>frame-N</code>, where <code>N</code> is the frame index.</dd>
+
+                <dt>ignoreData</dt>
+                <dd>Default = false. If enabled, Lectern will not read data attributes to set any
+                    options. This is useful if there is a conflict with another library.</dd>
+
+                <dt>wrapAround</dt>
+                <dd>Default = true. When enabled, navigating past the ends of the slider will
+                    wrap around from the first to last, or last to first, frame.</dd>
             </dl>
         </section>
     </main>

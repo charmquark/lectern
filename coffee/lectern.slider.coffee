@@ -90,6 +90,8 @@ do ->
 
 
         navigate: (to_frame) ->
+            if $.type(to_frame) == 'number'
+                to_frame = @frames[to_frame]
             hide_state = if to_frame.index > @active.index then 'hidden2' else 'hidden1'
             @active.animate_to hide_state
             @active = to_frame.animate_to 'active'
@@ -172,7 +174,6 @@ do ->
 
     on_navigator_click = (event) ->
         frame = data $(event.target)
-        console.log frame
         frame.slider.navigate frame
 
 

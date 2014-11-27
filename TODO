@@ -1,5 +1,7 @@
 
  * component: Lectern.Tooltip
+ * component: Lectern.Accordion
+ * component: Lectern.TabPane
  * component: Lectern.Menus
  * component: Lectern.Cascade (cascading grid layout engine, a la Masonry)
  * component: Lectern.PointGrid
