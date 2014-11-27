@@ -16,6 +16,7 @@
 
             dropFirst: true,
             dropLast: true,
+            ignoreData: false,
             modules: undefined
         },
 

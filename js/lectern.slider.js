@@ -30,12 +30,10 @@
                     right: '0px'
                 },
                 hidden1: {
-                    opacity: 0.0,
                     left: '100%',
                     right: '-100%'
                 },
                 hidden2: {
-                    opacity: 0.0,
                     left: '-100%',
                     right: '100%'
                 }
@@ -44,6 +42,7 @@
             duration: 500,
             easing: 'swing',
             indexClasses: false,
+            ignoreData: false,
             wrapAround: true
         },
 

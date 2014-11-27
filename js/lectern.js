@@ -38,11 +38,13 @@
             get_settings_func: function(defaults, list) {
                 return function(container, options) {
                     var settings = $.extend(true, {}, defaults, options);
-                    for (i in list) {
-                        var key = list[i];
-                        var value = container.data(key);
-                        if (value !== undefined) {
-                            settings[key] = value;
+                    if (!settings.ignoreData) {
+                        for (i in list) {
+                            var key = list[i];
+                            var value = container.data(key);
+                            if (value !== undefined) {
+                                settings[key] = value;
+                            }
                         }
                     }
                     return settings;
