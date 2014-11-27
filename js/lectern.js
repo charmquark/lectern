@@ -1,6 +1,4 @@
 (function($) {
-    $(function() { Lectern.init(); });
-
     var self = {
         version: '0.1.0',
 
@@ -103,6 +101,6 @@
         return component.actions[name];
     }
 
-
+    $(Lectern.init);
     window.Lectern = self;
 })(jQuery);

@@ -1,0 +1,105 @@
+body#demo-slider {
+    header,
+    footer,
+    main {
+        width: 100%;
+        max-width: 1000px;
+
+        margin: 0px auto;
+
+        position: relative;
+    }
+
+    dl.api {
+        background-color: #eee;
+        border-radius: 0.5em;
+
+        margin: 0em 2em;
+        padding: 2em 2em;
+
+        dt {
+            font-weight: bold;
+
+            font-size: 110%;
+        }
+
+        .api-opt {
+            color: #484848;
+            font-style: italic;
+
+            font-size: 80%;
+            margin: 0em 0.25em;
+        }
+
+        .api-subj {
+            color: #663333;
+            font-style: italic;
+
+            font-size: 80%;
+            margin: 0em 0.25em;
+        }
+    }
+
+    section.example {
+        background-color: #d8d8d8;
+
+        margin: 1em 0em;
+    }
+
+    section.code {
+        background-color: #eee;
+        border-radius: 0.5em;
+
+        margin: 0px 2em;
+        padding: 0.25em;
+
+        > pre {
+            background-color: #fffff0;
+            border: 1px #330 dashed;
+            color: #330;
+            font-weight: bold;
+
+            margin: 1em;
+            padding: 1em;
+        }
+    }
+
+    .lectern-slider-container {
+        height: 10em;
+
+        margin-bottom: 2em;
+
+        .lectern-slider-caption {
+            text-align: center;
+
+            width: 100%;
+
+            bottom: -1.5em;
+        }
+
+        .lectern-slider-frame {
+            font-weight: bold;
+
+            font-size: 200%;
+            padding: 1em;
+        }
+    }
+
+    .lectern-source-module {
+        margin: 1em 0em;
+
+        &:first-child {
+            margin-top: 0em;
+        }
+
+        &:last-child {
+            margin-bottom: 0em;
+        }
+    }
+}
+
+
+
+
+
+
