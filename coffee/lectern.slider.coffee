@@ -66,7 +66,7 @@ do ->
     # end self
 
 
-    class Slider
+    self.Slider = class Slider
 
         constructor: (@container, options) ->
             @settings = get_settings container, options

@@ -93,6 +93,7 @@
             <dl class="api">
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', <span class="api-opt">{options}</span>)</dt>
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'create', <span class="api-opt">{options}</span>)</dt>
+                <dt>new Lectern.Slider.Slider(<span class="api-subj">$(single-container)</span>, <span class="api-opt">{options}</span>)</dt>
                 <dd>
                     <p>Create a new slider. The slider instance is made available through
                         <code>.data('lectern-slider')</code> should you need to access it.</p>
@@ -100,7 +101,7 @@
 
                 <dt><span class="api-subj">$(containers)</span>.lectern('slider', 'active')</dt>
                 <dd>
-                    <p>Convenience method to retrieve a jQuery collection of active slides.</p>
+                    <p>Convenience method to retrieve a jQuery collection of active frames.</p>
                 </dd>
 
                 <dt><span class="api-subj">slider</span>.navigate(frame)</dt>
@@ -125,24 +126,34 @@
             <p>The following options are available &mdash; note this is not an exhaustive list of
                 all the possible settings.</p>
 
-            <dl>
-                <dt>duration</dt>
-                <dd>Default = 500. The duration of slide transitions, in milliseconds.</dd>
+            <dl class="api">
+                <dt>duration <span class="api-default">= 500</span></dt>
+                <dd>
+                    <p>The duration of slide transitions, in milliseconds.</p>
+                </dd>
 
-                <dt>easing</dt>
-                <dd>Default = "swing". The animation easing prameter.</dd>
+                <dt>easing <span class="api-default">= "swing"</span></dt>
+                <dd>
+                    <p>The animation easing prameter.</p>
+                </dd>
 
-                <dt>indexClasses</dt>
-                <dd>Default = false. If enabled, frames will be decorated with classes in the form
-                    <code>frame-N</code>, where <code>N</code> is the frame index.</dd>
+                <dt>indexClasses <span class="api-default">= false</span></dt>
+                <dd>
+                    <p>If enabled, frames will be decorated with classes in the form
+                        <code>frame-N</code>, where <code>N</code> is the frame index.</p>
+                </dd>
 
-                <dt>ignoreData</dt>
-                <dd>Default = false. If enabled, Lectern will not read data attributes to set any
-                    options. This is useful if there is a conflict with another library.</dd>
+                <dt>ignoreData <span class="api-default">= false</span></dt>
+                <dd>
+                    <p>If enabled, Lectern will not read data attributes to set any options. This is
+                        useful if there is a conflict with another library.</p>
+                </dd>
 
-                <dt>wrapAround</dt>
-                <dd>Default = true. When enabled, navigating past the ends of the slider will
-                    wrap around from the first to last, or last to first, frame.</dd>
+                <dt>wrapAround <span class="api-default">= true</span></dt>
+                <dd>
+                    <p>When enabled, navigating past the ends of the slider will wrap around from
+                        the first to last, or last to first, frame.</p>
+                </dd>
             </dl>
         </section>
     </main>
