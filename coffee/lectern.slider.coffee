@@ -71,8 +71,8 @@ do ->
         constructor: (@container, options) ->
             @settings = get_settings container, options
 
-            fetch               = (sel) => $ @settings.queries[sel], @container
-            fetch_and_classify  = (sel) => fetch(sel).addClass @settings.classes[sel]
+            fetch_and_classify = (sel) =>
+                $(@settings.queries[sel], @container).addClass @settings.classes[sel]
 
             data @container, this
 
