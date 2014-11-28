@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Lectern Tabs Component Demo/Test</title>
+
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="../build/css/lectern.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../build/js/lectern.js" type="text/javascript"></script>
+    <script src="../build/js/lectern.source.js" type="text/javascript"></script>
+    <script src="../build/js/lectern.tabs.js" type="text/javascript"></script>
+
+    <style id="example-1-style">
+        #fancy-tabs .lectern-tabs-canvas {
+            border: 1pt #333 solid;
+            border-radius: 0.8em 0em 0em 0.8em;
+            box-shadow: 8px -4px 8px -4px #9cf inset;
+        }
+
+        #fancy-tabs .lectern-tabs-frame {
+            padding: 0em 1em;
+            z-index: 2;
+        }
+
+        #fancy-tabs .lectern-tabs-frame p { text-align: justify; }
+
+        #fancy-tabs .lectern-tabs-tab {
+            background: #e8e8e8;
+            border: #333 solid;
+            border-radius: 0.4em 1.5em 0em 0em;
+            border-width: 1pt 1pt 0px 1pt;
+            box-shadow: -2px 7px 6px -4px #999 inset;
+
+            height: 1.625em;
+
+            line-height: 1.325em;
+            margin-left: 0.4em;
+            padding: 0.25em 0.6em 0.125em 0.5em;
+
+            position: relative;
+            bottom: -1px;
+
+            transition: background 1.2s, box-shadow 0.3s, z-index 1.2s;
+        }
+
+        #fancy-tabs .lectern-tabs-tab:hover { box-shadow: -2px 6px 9px -6px #9cf inset; }
+
+        #fancy-tabs .lectern-tabs-tab.lectern-tabs-active {
+            background: #fff;
+            box-shadow: -2px 7px 6px -4px #9cf inset;
+            z-index: 1;
+        }
+
+        #fancy-tabs .lectern-tabs-tabbar {
+            text-align: right;
+            padding-right: 2em;
+        }
+    </style>
+
+    <script>
+        $(function() { $('#source-1').lectern('source'); });
+    </script>
+
+    <script id="example-1-script" type="text/javascript">
+        $(function() {
+            $('#fancy-tabs').lectern('tabs', { duration: 600 });
+        });
+    </script>
+</head>
+
+<body id="demo-tabs">
+    <header>
+        <h1>Lectern Tabs Component Demo/Test</h1>
+    </header>
+
+    <main>
+        <section id="example-0-html" class="example" data-drop-indent="12">
+            <div data-lectern-tabs>
+                <ul>
+                    <li data-tab="Tab 0">
+                        <p>This is the first frame.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                    </li>
+                    <li data-tab="Tab 1">
+                        <p>This is the second frame.</p>
+                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                    </li>
+                    <li data-tab="Tab 2">
+                        <p>This is the third frame.</p>
+                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="code">
+            <p>The above tab view was created with this code:</p>
+            <pre data-lectern-source data-modules="#example-0-html"></pre>
+        </section>
+
+        <section id="example-1-html" class="example" data-drop-indent="12">
+            <div id="fancy-tabs" data-height="10em">
+                <ul>
+                    <li data-tab="Lorem Ipsum">
+                        <p>This is the first frame.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                    </li>
+                    <li>
+                        <span class="tab"><em>Morbi Tincidunt</em></span>
+                        <p>This is the second frame.</p>
+                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                    </li>
+                    <li>
+                        <span class="tab"><img src="images/tabs/tab_icon.png"> Curabitur Eu</span>
+                        <p>This is the third frame.</p>
+                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="code">
+            <p>The above tab view was created with this code:</p>
+            <pre id="source-1" data-modules="#example-1-html, #example-1-style, #example-1-script"></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2014 Invironz, Christopher Nicholson-Sauls</p>
+    </footer>
+</body>
+
+</html>

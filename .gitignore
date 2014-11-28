@@ -1,6 +1,9 @@
 build/*
 demo/css/*
 
+**/.directory
+**/.sass-cache
+
 !**/.gitkeep
 !demo/css/normalize.css
 

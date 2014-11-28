@@ -2,9 +2,9 @@ do ->
 
     self =
 
-        auto_queue:     '[data-lectern-source]'
+        autoQueue:      '[data-lectern-source]'
         canon:          'source'
-        default_action: 'create'
+        defaultAction:  'create'
         name:           'Source'
 
 
@@ -34,7 +34,7 @@ do ->
     class SourceView
 
         constructor: (@container, options) ->
-            @settings = get_settings container, options
+            @settings = getSettings container, options
 
             data @container, this
 
@@ -47,19 +47,19 @@ do ->
 
     class Module
 
-        constructor: (@source_view, @element) ->
-            @settings = @source_view.settings
+        constructor: (@sourceView, @element) ->
+            @settings = @sourceView.settings
 
-            slice_start = if @settings.dropFirst then  1 else 0
-            slice_stop  = if @settings.dropLast  then -1 else 0
-            content = @element.html().split('\n')[slice_start ... slice_stop]
+            sliceStart = if @settings.dropFirst then  1 else 0
+            sliceStop  = if @settings.dropLast  then -1 else 0
+            content = @element.html().split('\n')[sliceStart ... sliceStop]
 
-            drop_indent = @element.dataOr 'dropIndent', 0
-            if drop_indent > 0
+            dropIndent = @element.dataOr 'dropIndent', 0
+            if dropIndent > 0
                 for i of content
-                    content[i] = content[i].slice drop_indent
+                    content[i] = content[i].slice dropIndent
 
-            @source_view.container.append module_factories[this.type()] @settings, content
+            @sourceView.container.append moduleFactories[this.type()] @settings, content
 
 
         type: ->
@@ -70,30 +70,30 @@ do ->
     # end Module
 
 
-    module_factories =
+    moduleFactories =
         html: (settings, content) ->
-            Lectern.utils.add_classes settings, $('<div></div>'), ['module', 'htmlModule']
+            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'htmlModule']
                 .text content.join '\n'
 
         script: (settings, content) ->
             content.unshift '<script>'
             content.push '</script>'
-            Lectern.utils.add_classes settings, $('<div></div>'), ['module', 'scriptModule']
+            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'scriptModule']
                 .text content.join '\n'
 
         style: (settings, content) ->
             content.unshift '<style>'
             content.push '</style>'
-            Lectern.utils.add_classes settings, $('<div></div>'), ['module', 'styleModule']
+            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'styleModule']
                 .text content.join '\n'
 
 
-    data = Lectern.generators.data_func self.canon
+    data = Lectern.generators.data self.canon
 
 
-    get_settings = Lectern.generators.get_settings_func self.defaults, [
+    getSettings = Lectern.generators.getSettings self.defaults, [
         'modules'
     ]
 
 
-    Lectern.add_component self
+    Lectern.addComponent self

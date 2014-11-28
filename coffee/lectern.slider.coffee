@@ -1,9 +1,9 @@
 do ->
 
     self =
-        auto_queue:     '[data-lectern-slider]'
+        autoQueue:      '[data-lectern-slider]'
         canon:          'slider'
-        default_action: 'create'
+        defaultAction:  'create'
         name:           'Slider'
 
 
@@ -66,35 +66,31 @@ do ->
     # end self
 
 
-    self.Slider = class Slider
+    self.Slider = class Slider extends Lectern.base.ComponentMain
 
-        constructor: (@container, options) ->
-            @settings = get_settings container, options
+        constructor: (container, options) ->
+            super container, getSettings(container, options)
+            data container, this
 
-            fetch_and_classify = (sel) =>
-                $(@settings.queries[sel], @container).addClass @settings.classes[sel]
-
-            data @container, this
-
-            @canvas     = fetch_and_classify 'canvas'
-            @caption    = fetch_and_classify 'caption'
+            @canvas     = this.classyFetch 'canvas'
+            @caption    = this.classyFetch 'caption'
             @frames     = (new Frame(this, idx, $(elt)) for elt, idx in fetch('frames'))
-            @navigator  = generate_navigator this
+            @navigator  = generateNavigator this
             @first      = @frames[0]
             @last       = @frames[@frames.length - 1]
             @active     = @first
 
             @container.addClass @settings.classes.container
             @container.append @navigator
-            @active.jump_to 'active'
+            @active.jumpTo 'active'
 
 
-        navigate: (to_frame) ->
-            if $.type(to_frame) == 'number'
-                to_frame = @frames[to_frame]
-            hide_state = if to_frame.index > @active.index then 'hidden2' else 'hidden1'
-            @active.animate_to hide_state
-            @active = to_frame.animate_to 'active'
+        navigate: (toFrame) ->
+            if $.type(toFrame) == 'number'
+                toFrame = @frames[toFrame]
+            hideState = if toFrame.index > @active.index then 'hidden2' else 'hidden1'
+            @active.animateTo hideState
+            @active = toFrame.animateTo 'active'
 
 
         next: ->
@@ -118,63 +114,63 @@ do ->
         constructor: (@slider, @index, @element) ->
             data @element, this
 
-            @nav_node   = null
+            @navNode    = null
             @settings   = slider.settings
             @state      = 'hidden1'
 
-            Lectern.utils.add_classes @settings, element, ['frame', 'hidden1']
+            Lectern.utils.addClasses @settings, element, ['frame', 'hidden1']
             if @settings.indexClasses
                 element.addClass 'frame-' + @index
 
 
-        animate_to: (to_state) ->
-            this.set_state to_state, @settings.duration, @settings.easing
+        animateTo: (toState) ->
+            this.setState toState, @settings.duration, @settings.easing
 
 
-        jump_to: (to_state) ->
-            this.set_state to_state, 0, 'linear'
+        jumpTo: (toState) ->
+            this.setState toState, 0, 'linear'
 
 
-        set_state: (to_state, duration, easing) ->
-            unless @state == to_state
-                @element.animate @settings.states[to_state], duration, easing
+        setState: (toState, duration, easing) ->
+            unless @state == toState
+                @element.animate @settings.states[toState], duration, easing
 
-                @nav_node.removeClass   @settings.classes.active if @state == 'active'
-                @nav_node.addClass      @settings.classes.active if to_state == 'active'
+                @navNode.removeClass   @settings.classes.active if @state == 'active'
+                @navNode.addClass      @settings.classes.active if toState == 'active'
 
                 @element.removeClass @settings.classes[@state]
-                    .addClass @settings.classes[to_state]
-                @state = to_state
+                    .addClass @settings.classes[toState]
+                @state = toState
             this
 
     # end Frame
 
 
-    data = Lectern.generators.data_func self.canon
+    data = Lectern.generators.data self.canon
 
 
-    generate_navigator = (slider) ->
+    generateNavigator = (slider) ->
         nav = $ '<ul></ul>'
             .addClass slider.settings.classes.navigator
 
         for frame in slider.frames
             node = $('<li></li>')
             data node, frame
-            node.click on_navigator_click
-            frame.nav_node = node
+            node.click onNavigatorClick
+            frame.navNode = node
             nav.append node
 
         nav
 
 
-    get_settings = Lectern.generators.get_settings_func self.defaults, [
+    getSettings = Lectern.generators.getSettings self.defaults, [
         'duration', 'easing', 'indexClasses', 'wrapAround'
     ]
 
 
-    on_navigator_click = (event) ->
-        frame = data $(event.target)
+    onNavigatorClick = (event) ->
+        frame = data $(event.currentTarget)
         frame.slider.navigate frame
 
 
-    Lectern.add_component self
+    Lectern.addComponent self

@@ -1,0 +1,48 @@
+
+dl.api {
+    background-color: #eee;
+    border-radius: 0.5em;
+
+    margin: 0em 2em;
+    padding: 2em 2em;
+
+    code {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 0.1em rgba(0, 0, 0, 0.2) solid;
+        border-radius: 4px;
+        color: #181878;
+        font-weight: bold;
+
+        margin: 0em 0.2em;
+        padding: 0.1em;
+    }
+
+    dt {
+        font-weight: bold;
+
+        font-size: 110%;
+    }
+
+    .api-default {
+        color: #181878;
+
+        font-size: 80%;
+        margin: 0em 0.5em;
+    }
+
+    .api-opt {
+        color: #484848;
+        font-style: italic;
+
+        font-size: 80%;
+        margin: 0em 0.25em;
+    }
+
+    .api-subj {
+        color: #663333;
+        font-style: italic;
+
+        font-size: 80%;
+        margin: 0em 0.25em;
+    }
+}

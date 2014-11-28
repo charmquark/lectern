@@ -1,18 +1,25 @@
 do ->
 
     self =
-        version: '0.1.2'
+        version: '0.1.3'
 
 
-        add_component: (component) ->
+        addBase: (C) ->
+            self.base[C.name] = C
+
+
+        addComponent: (component) ->
             self.components[component.canon] = self[component.name] = component
+
+
+        base: {}
 
 
         components: {}
 
 
         generators:
-            data_func: (suffix) ->
+            data: (suffix) ->
                 key = 'lectern-' + suffix
                 (element, arg) ->
                     if arg?
@@ -20,7 +27,7 @@ do ->
                     else
                         element.data key
 
-            get_settings_func: (defaults, list) ->
+            getSettings: (defaults, list) ->
                 (container, options) ->
                     settings = $.extend true, {}, defaults, options
                     unless settings.ignoreData
@@ -35,14 +42,14 @@ do ->
                 $.fn[name] = impl
             for canon, component of self.components
                 component.init() if component.init?
-                if component.auto_queue?
+                if component.autoQueue?
                     do (component, canon) ->
-                        $ -> $(component.auto_queue).lectern canon
+                        $ -> $(component.autoQueue).lectern canon
             null
 
 
         utils:
-            add_classes: (settings, element, names) ->
+            addClasses: (settings, element, names) ->
                 classes = []
                 for i of names
                     classes.push settings.classes[names[i]]
@@ -63,11 +70,28 @@ do ->
                     action = arg
                     sans = 2
                 else
-                    action = component.default_action
+                    action = component.defaultAction
                     sans = 1
                 component.actions[action].apply this, $(arguments).slice sans
             else
                 throw 'invalid arguments to $.lectern()'
+
+
+    self.addBase class ComponentMain
+
+        constructor: (@container, @settings) ->
+            container.addClass @settings.classes.container
+
+
+        fetch: (sel) ->
+            $(@settings.queries[sel], @container)
+
+
+        classyFetch: (sel) ->
+            this.fetch sel
+                .addClass @settings.classes[sel]
+
+    # end ComponentMain
 
 
     window.Lectern = self

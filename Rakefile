@@ -33,9 +33,9 @@ namespace :lectern do
 
     def compile(components)
         puts " * Will be including these components: #{components.join(', ')}"
-        puts " * Compiling javascript..."
+        puts " * Compiling javascripts..."
         compile_js(components);
-        puts " * Compiling stylesheet..."
+        puts " * Compiling stylesheets..."
         compile_css(components);
     end
 
@@ -46,12 +46,14 @@ namespace :lectern do
             template += "\n@import 'lectern.#{comp}.scss';"
         end
         sass = Sass::Engine.new template,
-            cache: false,
+            cache: true,
             load_paths: ['./scss'],
             style: :nested,
             syntax: :scss
+        puts " * \tbuild/css/lectern.css"
         IO.write 'build/css/lectern.css', sass.render
         sass.options[:style] = :compact
+        puts " * \tbuild/css/lectern.min.css"
         IO.write 'build/css/lectern.min.css', sass.render
 
         sass = Sass::Engine.new IO.read('demo/scss/demo.scss'),
@@ -59,6 +61,7 @@ namespace :lectern do
             load_paths: ['./demo/scss'],
             style: :compact,
             syntax: :scss
+        puts " * \tdemo/css/demo.css"
         IO.write 'demo/css/demo.css', sass.render
     end
 
@@ -76,7 +79,7 @@ namespace :lectern do
         modfile = "lectern.#{canon}" if modfile.nil?
         src = "coffee/#{modfile}.coffee"
         dest = "build/js/#{modfile}.js" if dest.nil?
-        puts " * \t#{src}"
+        puts " * \t#{dest}"
         IO.write dest, CoffeeScript.compile(IO.read(src), bare: true)
     end
 
