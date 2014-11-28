@@ -35,18 +35,16 @@ section.code {
     margin: 0px 2em;
     padding: 0.25em;
 
-    > pre {
+    .lectern-source-module {
         background-color: #fffff0;
         border: 1px #330 dashed;
         color: #330;
         font-weight: bold;
 
         margin: 1em;
-        padding: 1em;
-    }
+        padding: 0.125em 0.25em;
 
-    .lectern-source-module {
-        margin: 1em 0em;
+        overflow: auto;
 
         &:first-child {
             margin-top: 0em;

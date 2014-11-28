@@ -74,7 +74,7 @@ do ->
 
             @canvas     = this.classyFetch 'canvas'
             @caption    = this.classyFetch 'caption'
-            @frames     = (new Frame(this, idx, $(elt)) for elt, idx in fetch('frames'))
+            @frames     = (new Frame(this, idx, $(elt)) for elt, idx in this.fetch('frames'))
             @navigator  = generateNavigator this
             @first      = @frames[0]
             @last       = @frames[@frames.length - 1]
