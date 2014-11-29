@@ -137,22 +137,26 @@ do ->
         height
 
 
+    findLabel = (settings, element) ->
+        label = element.data 'tab'
+        unless label?
+            label = $(settings.queries.tab, element)
+            if label?
+                label = label.remove().html()
+            else
+                label = frame.index.toString()
+        label
+
+
     generateTabBar = (tabView) ->
         settings = tabView.settings
         bar = $ '<ul></ul>'
             .addClass settings.classes.tabBar
 
         for frame in tabView.frames
-            label = frame.element.data 'tab'
-            unless label?
-                label = $(settings.queries.tab, frame.element)
-                if label?
-                    label = label.remove().html()
-                else
-                    label = frame.index.toString()
             tab = $ '<li></li>'
                 .addClass   settings.classes.tab
-                .html       label
+                .html       findLabel settings, frame.element
                 .click      onTabClick
 
             if settings.indexClasses
