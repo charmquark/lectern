@@ -19,7 +19,7 @@ do ->
             dropFirst:  true
             dropLast:   true
             ignoreData: false
-            modules:    undefined
+            modules:    null
 
 
         actions:

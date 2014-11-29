@@ -7,6 +7,10 @@
 }
 
 
+@import 'demo.slider.scss';
+@import 'demo.tabs.scss';
+
+
 header,
 footer,
 main {
@@ -19,44 +23,134 @@ main {
 }
 
 
-section.example {
-    background-color: #d8d8d8;
+footer {
+    border-top: 1pt #333 solid;
 
-    margin: 1em 0em;
+    margin-top: 1em;
+}
+
+
+section.example {
+    border: 2pt #d8d8d8 dashed;
+    border-radius: 1em;
+
+    margin: 2em 0em;
+    padding: 2em;
 
     position: relative;
 }
 
 
 section.code {
-    background-color: #eee;
-    border-radius: 0.5em;
-
-    margin: 0px 2em;
-    padding: 0.25em;
-
     .lectern-source-module {
         background-color: #fffff0;
-        border: 1px #330 dashed;
+        border: 2pt #cc9 solid;
         color: #330;
         font-weight: bold;
 
-        margin: 1em;
+        margin: 1em 0em;
         padding: 0.125em 0.25em;
 
         overflow: auto;
+    }
+}
 
-        &:first-child {
-            margin-top: 0em;
-        }
 
-        &:last-child {
-            margin-bottom: 0em;
+body#demo-index {
+    ul.available-demos {
+        list-style-type: none;
+
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            background-color: #f8f8f8;
+            border: 1pt #333 solid;
+            border-radius: 0.5em;
+
+            margin: 2em 0em;
+            padding: 2em;
+
+            &:after {
+                content: "";
+
+                clear: both;
+                display: block;
+            }
+
+            a {
+                color: #69c;
+                text-decoration: none;
+
+                font-size: 1.2em;
+
+                &:hover {
+                    color: #369;
+                }
+
+                img {
+                    -moz-filter: drop-shadow(4px 4px 8px #484848);
+                    -webkit-filter: drop-shadow(4px 4px 8px #484848);
+                    filter: drop-shadow(4px 4px 8px #484848);
+
+                    float: right;
+                }
+            }
         }
     }
 }
 
 
-@import 'demo.slider.scss';
-@import 'demo.tabs.scss';
+.doc-tabs {
+    .doc-tabs {
+        margin-top: 1em;
+    }
+
+    > .lectern-tabs-canvas {
+        > .lectern-tabs-frame {
+            &.lectern-tabs-active {
+                z-index: 2;
+            }
+
+            &.lectern-tabs-inactive {
+                z-index: -2;
+            }
+        }
+    }
+
+    > .lectern-tabs-tabbar {
+        background-color: #f0f0f0;
+        border: 1pt #333 solid;
+        border-radius: 0.375em;
+
+        padding: 0.5em;
+
+        > .lectern-tabs-tab {
+            background-color: #d8d8d8;
+            border: 1pt #333 solid;
+            border-radius: 0.375em;
+            color: #333;
+
+            font-size: 0.8em;
+            margin-right: 0.75em;
+            padding: 0.25em 0.5em;
+
+            transition:
+                background  0.5s,
+                border      0.5s,
+                box-shadow  0.5s,
+                color       0.5s
+            ;
+
+            &.lectern-tabs-active {
+                background-color: #fff;
+                border-color: #fff;
+                box-shadow: 0px 0px 0em 0.2em #9cf;
+                color: #000;
+            }
+        }
+    }
+}
+
+
 @import 'api.scss';

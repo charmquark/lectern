@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Lectern Tabs Component Demo/Test</title>
+    <title>Lectern.Tabs Component</title>
 
     <link href="css/normalize.css" rel="stylesheet">
     <link href="../build/css/lectern.css" rel="stylesheet">
@@ -65,7 +65,10 @@
     </style>
 
     <script>
-        $(function() { $('#source-1').lectern('source'); });
+        $(function() {
+            $('.demo-source').lectern('source');
+            $('.doc-tabs').lectern('tabs');
+        });
     </script>
 
     <script id="example-1-script" type="text/javascript">
@@ -77,63 +80,225 @@
 
 <body id="demo-tabs">
     <header>
-        <h1>Lectern Tabs Component Demo/Test</h1>
+        <h1>Lectern.Tabs Component Demo</h1>
+
+        <p>The <code>Lectern.Tabs</code> component is used to create <code>TabViews</code> in a
+            page. These demo pages are themselves an example of this in action.</p>
     </header>
 
     <main>
-        <section id="example-0-html" class="example" data-drop-indent="12">
-            <div data-lectern-tabs>
-                <ul>
-                    <li data-tab="Tab 0">
-                        <p>This is the first frame.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
-                    </li>
-                    <li data-tab="Tab 1">
-                        <p>This is the second frame.</p>
-                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
-                    </li>
-                    <li data-tab="Tab 2">
-                        <p>This is the third frame.</p>
-                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section class="code">
-            <p>The above tab view was created with this code:</p>
-            <pre data-lectern-source data-modules="#example-0-html"></pre>
-        </section>
+        <div class="doc-tabs">
+            <ul>
+                <li data-tab="Simple Example">
+                    <section>
+                        <p>The minimum to get a working TabView.</p>
+                    </section>
 
-        <section id="example-1-html" class="example" data-drop-indent="12">
-            <div id="fancy-tabs" data-height="10em">
-                <ul>
-                    <li data-tab="Lorem Ipsum">
-                        <p>This is the first frame.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
-                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
-                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
-                    </li>
-                    <li>
-                        <span class="tab"><em>Morbi Tincidunt</em></span>
-                        <p>This is the second frame.</p>
-                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
-                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
-                    </li>
-                    <li>
-                        <span class="tab"><img src="images/tabs/tab_icon.png"> Curabitur Eu</span>
-                        <p>This is the third frame.</p>
-                        <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
-                        <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section class="code">
-            <p>The above tab view was created with this code:</p>
-            <pre id="source-1" data-modules="#example-1-html, #example-1-style, #example-1-script"></pre>
-        </section>
+                    <section id="example-0-html" class="example" data-drop-indent="24">
+                        <div data-lectern-tabs>
+                            <ul>
+                                <li data-tab="Tab 0">
+                                    <p>Frame 0</p>
+                                </li>
+                                <li data-tab="Tab 1">
+                                    <p>Frame 1</p>
+                                </li>
+                                <li data-tab="Tab 2">
+                                    <p>Frame 2</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="code">
+                        <pre class="demo-source"
+                            data-modules="#example-0-html"
+                        ></pre>
+                    </section>
+                </li>
+
+                <li data-tab="Advanced Example">
+                    <section>
+                        <p>Just by applying some CSS, you can get as fancy as you like with your
+                            TabViews. For more interesting tabs, move the tab label out of the data
+                            attribute and into a span, which will be moved as-is into the generated
+                            tab elements.</p>
+                    </section>
+
+                    <section id="example-1-html" class="example" data-drop-indent="24">
+                        <div id="fancy-tabs" data-height="10em">
+                            <ul>
+                                <li data-tab="Lorem Ipsum">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                                    <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                                    <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                                </li>
+                                <li>
+                                    <span class="tab"><em>Morbi Tincidunt</em></span>
+                                    <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                                    <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                                </li>
+                                <li>
+                                    <span class="tab"><img src="images/tabs/tab_icon.png"> Curabitur Eu</span>
+                                    <p>Curabitur eu egestas lacus. Nunc vitae tempus dolor, in accumsan sapien. Nunc a orci convallis ante fermentum efficitur. Nullam pharetra libero diam. Nulla vel arcu commodo ipsum vehicula venenatis. Suspendisse dictum faucibus metus. Quisque rutrum sapien at ultrices bibendum. Nam vel gravida diam, a laoreet nisi. In sit amet efficitur nisl, sed porttitor diam. Donec et sem diam. Etiam malesuada risus ut tortor congue bibendum. Curabitur in urna quam. Maecenas malesuada mollis purus, nec tincidunt elit bibendum vel.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel arcu condimentum, ullamcorper nisi eget, sagittis lorem. Duis tincidunt interdum diam, pulvinar fringilla risus laoreet sed. Nam a hendrerit tellus, non aliquet augue. Donec vel augue vel ante ornare tempus. Curabitur rhoncus, metus ac laoreet imperdiet, augue purus gravida eros, et eleifend urna ipsum nec ex. Sed tincidunt hendrerit massa, non vulputate tortor placerat id. Aenean vel arcu et risus aliquet sagittis sed vitae magna. Ut dignissim orci in mauris consectetur suscipit. Praesent commodo facilisis urna eu efficitur. Mauris cursus feugiat quam eget hendrerit. Vestibulum neque mauris, posuere quis risus et, ultrices eleifend leo. Nulla finibus purus id nunc gravida eleifend. Donec placerat tempus nisl, sed malesuada libero rhoncus nec. Vestibulum consectetur tellus vitae enim pellentesque tempus.</p>
+                                    <p>Morbi tincidunt lectus scelerisque sem molestie, non tempus quam dapibus. Donec pulvinar facilisis sapien eu pretium. Sed quis diam mattis, accumsan ligula ac, consequat libero. Nullam bibendum cursus sapien, sed gravida orci laoreet non. Phasellus maximus non arcu ac consequat. Cras ut purus sed neque viverra convallis. Nullam lobortis felis nisi, et aliquam leo gravida a. In nec dignissim metus, eu volutpat purus. Aliquam est risus, eleifend eget diam vel, tristique lacinia mi. Nulla laoreet, nibh vitae convallis sollicitudin, ex lorem euismod purus, ut sagittis dui magna nec orci. Nunc ut felis mattis, mattis risus ac, efficitur tellus. Integer elit diam, porta ac dolor vitae, placerat gravida sem. Phasellus et faucibus massa. Praesent tristique metus tellus, vel malesuada felis accumsan non.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="code">
+                        <pre class="demo-source"
+                            data-modules="#example-1-html, #example-1-style, #example-1-script"
+                        ></pre>
+                    </section>
+                </li>
+
+                <li data-tab="API">
+                    <section>
+                        <dl class="api">
+                            <dt>
+                                <div>
+                                    <span class="subj">$(containers)</span>.lectern(
+                                        'tabs',
+                                        <span class="opt">{options}</span>
+                                    )
+                                </div>
+                                <div>
+                                <span class="subj">$(containers)</span>.lectern(
+                                        'tabs',
+                                        'create',
+                                        <span class="opt">{options}</span>
+                                    )
+                                </div>
+                                <div>
+                                    new Lectern.Tabs.TabView(
+                                        <span class="subj">$(single container)</span>,
+                                        <span class="opt">{options}</span>
+                                    )
+                                </div>
+                            </dt>
+                            <dd>
+                                <p>Create a new TabView. The instance object is always available
+                                    through <code>container.data('lectern-tabs')</code> should you
+                                    need it.</p>
+                            </dd>
+
+
+                            <dt>
+                                <div>
+                                    <span class="subj">tabView</span>.navigate(frame)
+                                </div>
+                                <div>
+                                    <span class="subj">tabView</span>.navigate(index)
+                                </div>
+                            </dt>
+                            <dd>
+                                <p>Navigate the TabView to the requested frame.</p>
+                            </dd>
+                        </dl>
+                    </section>
+                </li>
+
+                <li data-tab="Options">
+                    <section>
+                        <div class="doc-tabs">
+                            <ul>
+                                <li data-tab="Basic Options">
+                                    <dl class="options">
+                                        <dt>duration <span class="default">200</span></dt>
+                                        <dd>
+                                            <p>The duration of transitions, in milliseconds.</p>
+                                        </dd>
+
+                                        <dt>easing <span class="default">"swing"</span></dt>
+                                        <dd>
+                                            <p>The animation easing prameter.</p>
+                                        </dd>
+
+                                        <dt>height <span class="default">null</span></dt>
+                                        <dd>
+                                            <p>If set, the TabView canvas will be constrained to the
+                                                provided height. When not set (the default), the
+                                                canvas will have the same height as the tallest
+                                                frame.</p>
+                                        </dd>
+
+                                        <dt>indexClasses <span class="default">false</span></dt>
+                                        <dd>
+                                            <p>If enabled, frames will be decorated with classes in
+                                                the form <code>frame-N</code>, where <code>N</code>
+                                                is the frame index.</p>
+                                        </dd>
+
+                                        <dt>ignoreData <span class="default">false</span></dt>
+                                        <dd>
+                                            <p>If enabled, Lectern will not read data attributes to
+                                                set any options. This is useful if there is a
+                                                conflict with another library.</p>
+                                        </dd>
+                                    </dl>
+                                </li>
+
+                                <li data-tab="Advanced">
+                                    <dl class="options">
+                                        <dt class="obj">classes: {
+                                            <div>active     <span class="default">'lectern-tabs-active'</span></div>
+                                            <div>canvas     <span class="default">'lectern-tabs-canvas'</span></div>
+                                            <div>container  <span class="default">'lectern-tabs-container'</span></div>
+                                            <div>frame      <span class="default">'lectern-tabs-frame'</span></div>
+                                            <div>inactive   <span class="default">'lectern-tabs-inactive'</span></div>
+                                            <div>tab        <span class="default">'lectern-tabs-tab'</span></div>
+                                            <div>tabBar     <span class="default">'lectern-tabs-tabbar'</span></div>
+                                        }</dt>
+                                        <dd>
+                                            <p>Allows you to change what CSS classes will be added
+                                                to the various TabView parts.</p>
+                                        </dd>
+
+
+                                        <dt class="obj">queries: {
+                                            <div>canvas <span class="default">'> ul'</span></div>
+                                            <div>frames <span class="default">'> ul > li'</span></div>
+                                            <div>tab    <span class="default">'> .tab'</span></div>
+                                        }</dt>
+                                        <dd>
+                                            <p>If you are trying to be very clever, you can change
+                                                the queries Lectern will use to identify what parts
+                                                of your markup should become in the final
+                                                TabView.</p>
+
+                                            <p>Note that the query for tab labels is done in the
+                                                context of the frame element, not the container.</p>
+                                        </dd>
+
+
+                                        <dt class="obj">states: {
+                                            <div>active: {
+                                                <div>opacity    <span class="default">1</span></div>
+                                            }</div>
+                                            <div>inactive: {
+                                                <div>opacity    <span class="default">0</span></div>
+                                            }</div>
+                                        }</dt>
+                                        <dd>
+                                            <p>These are the various states which will be applied
+                                                to frames to animate them.  You may modify them
+                                                however you need to suit your design.</p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <main>
     </main>
 
     <footer>

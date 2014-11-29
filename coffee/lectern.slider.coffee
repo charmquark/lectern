@@ -34,7 +34,7 @@ do ->
                     right:  '-100%'
 
                 hidden2:
-                    left:   '-100%',
+                    left:   '-100%'
                     right:  '100%'
 
             duration:       500

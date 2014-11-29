@@ -106,10 +106,10 @@ do ->
 
             height = findFrameHeight @settings.height, @frames
             container.height height + @tabBar.outerHeight()
-            @canvas.height height
+            @canvas.innerHeight height
             for f in @frames
                 f.element.css
-                    'max-height': @canvas.innerHeight()
+                    'max-height': height
                 f.jumpTo 'inactive'
             @active.jumpTo 'active'
 
