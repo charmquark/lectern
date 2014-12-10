@@ -1,5 +1,6 @@
 build/*
 demo/css/*
+node_modules/*
 
 **/.directory
 **/.sass-cache

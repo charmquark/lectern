@@ -26,6 +26,40 @@ namespace :lectern do
     end
 
 
+    namespace :coffee do
+
+        desc 'watch coffee files for changes and autorecompile'
+        task :watch do
+            `./node_modules/coffee-script/bin/coffee --output build/js/ --compile --watch coffee/*.coffee`
+        end
+
+    end
+
+
+    namespace :demo do
+
+        namespace :scss do
+
+            desc 'watch demo scss files for changes and autorecompile'
+            task :watch do
+                `scss --watch demo/scss/demo.scss:demo/css/demo.css`
+            end
+
+        end
+
+    end
+
+
+    namespace :scss do
+
+        desc 'watch scss files for changes and autorecompile'
+        task :watch do
+            `scss --watch scss/lectern.scss:build/css/lectern.css`
+        end
+
+    end
+
+
     def available_components
         Dir[COMP_GLOB].map {|comp| comp.match(COMP_CANON_RE)[1] }
     end
@@ -80,7 +114,7 @@ namespace :lectern do
         src = "coffee/#{modfile}.coffee"
         dest = "build/js/#{modfile}.js" if dest.nil?
         puts " * \t#{dest}"
-        IO.write dest, CoffeeScript.compile(IO.read(src), bare: true)
+        IO.write dest, CoffeeScript.compile(IO.read(src))
     end
 
 end

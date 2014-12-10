@@ -1,99 +1,97 @@
-do ->
+self =
 
-    self =
-
-        autoQueue:      '[data-lectern-source]'
-        canon:          'source'
-        defaultAction:  'create'
-        name:           'Source'
+    autoQueue:      '[data-lectern-source]'
+    canon:          'source'
+    defaultAction:  'create'
+    name:           'Source'
 
 
-        defaults:
-            classes: 
-                container:      'lectern-source-container'
-                htmlModule:      'lectern-source-module-html'
-                module:         'lectern-source-module'
-                scriptModule:   'lectern-source-module-script'
-                styleModule:    'lectern-source-module-style'
+    defaults:
+        classes: 
+            container:      'lectern-source-container'
+            htmlModule:      'lectern-source-module-html'
+            module:         'lectern-source-module'
+            scriptModule:   'lectern-source-module-script'
+            styleModule:    'lectern-source-module-style'
 
-            dropFirst:  true
-            dropLast:   true
-            ignoreData: false
-            modules:    null
-
-
-        actions:
-            create: (options) ->
-                this.each (idx, container) ->
-                    new SourceView $(container), options
-                this
-
-    # end self
+        dropFirst:  true
+        dropLast:   true
+        ignoreData: false
+        modules:    null
 
 
-    class SourceView
+    actions:
+        create: (options) ->
+            this.each (idx, container) ->
+                new SourceView $(container), options
+            this
 
-        constructor: (@container, options) ->
-            @settings = getSettings container, options
-
-            data @container, this
-
-            @modules = (new Module(this, $(elt)) for elt in $(@settings.modules))
-
-            @container.addClass @settings.classes.container
-
-    # end SourceView
+# end self
 
 
-    class Module
+class SourceView
 
-        constructor: (@sourceView, @element) ->
-            @settings = @sourceView.settings
+    constructor: (@container, options) ->
+        @settings = getSettings container, options
 
-            sliceStart = if @settings.dropFirst then  1 else 0
-            sliceStop  = if @settings.dropLast  then -1 else 0
-            content = @element.html().split('\n')[sliceStart ... sliceStop]
+        data @container, this
 
-            dropIndent = @element.dataOr 'dropIndent', 0
-            if dropIndent > 0
-                for i of content
-                    content[i] = content[i].slice dropIndent
+        @modules = (new Module(this, $(elt)) for elt in $(@settings.modules))
 
-            @sourceView.container.append moduleFactories[this.type()] @settings, content
+        @container.addClass @settings.classes.container
+
+# end SourceView
 
 
-        type: ->
-            return 'script' if @element.is 'script'
-            return 'style'  if @element.is 'style'
-            return 'html'
+class Module
 
-    # end Module
+    constructor: (@sourceView, @element) ->
+        @settings = @sourceView.settings
 
+        sliceStart = if @settings.dropFirst then  1 else 0
+        sliceStop  = if @settings.dropLast  then -1 else 0
+        content = @element.html().split('\n')[sliceStart ... sliceStop]
 
-    moduleFactories =
-        html: (settings, content) ->
-            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'htmlModule']
-                .text content.join '\n'
+        dropIndent = @element.dataOr 'dropIndent', 0
+        if dropIndent > 0
+            for i of content
+                content[i] = content[i].slice dropIndent
 
-        script: (settings, content) ->
-            content.unshift '<script>'
-            content.push '</script>'
-            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'scriptModule']
-                .text content.join '\n'
-
-        style: (settings, content) ->
-            content.unshift '<style>'
-            content.push '</style>'
-            Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'styleModule']
-                .text content.join '\n'
+        @sourceView.container.append moduleFactories[this.type()] @settings, content
 
 
-    data = Lectern.generators.data self.canon
+    type: ->
+        return 'script' if @element.is 'script'
+        return 'style'  if @element.is 'style'
+        return 'html'
+
+# end Module
 
 
-    getSettings = Lectern.generators.getSettings self.defaults, [
-        'modules'
-    ]
+moduleFactories =
+    html: (settings, content) ->
+        Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'htmlModule']
+            .text content.join '\n'
+
+    script: (settings, content) ->
+        content.unshift '<script>'
+        content.push '</script>'
+        Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'scriptModule']
+            .text content.join '\n'
+
+    style: (settings, content) ->
+        content.unshift '<style>'
+        content.push '</style>'
+        Lectern.utils.addClasses settings, $('<div></div>'), ['module', 'styleModule']
+            .text content.join '\n'
 
 
-    Lectern.addComponent self
+data = Lectern.generators.data self.canon
+
+
+getSettings = Lectern.generators.getSettings self.defaults, [
+    'modules'
+]
+
+
+Lectern.addComponent self
