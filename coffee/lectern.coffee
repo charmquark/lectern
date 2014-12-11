@@ -176,7 +176,7 @@ Lectern = window.Lectern =
             frameElements = @canvas.children()
             this.addClass 'frame', frameElements
             frameFactory = factoryFor FrameClass
-            @frames = frames = (frameFactory(this, idx, $(elt)) for elt, idx in frameElements)
+            @frames = frames = (frameFactory([this, idx, $(elt)]) for elt, idx in frameElements)
 
             @first = frames[0]
             @last = frames[frames.length - 1]
@@ -248,8 +248,8 @@ Lectern = window.Lectern =
 factoryFor = (type) ->
     F = (args)-> type.apply this, args
     F.prototype = type.prototype
-    return ()->
-        new F arguments
+    return (args)->
+        new F args
 
 
 $.fn.dataElse = (key, alt) ->
