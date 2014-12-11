@@ -1,0 +1,155 @@
+$red-50:    #FFEBEE;
+$red-100:   #FFCDD2;
+$red-200:   #EF9A9A;
+$red-300:   #E57373;
+$red-400:   #EF5350;
+$red-500:   #F44336;
+$red-600:   #E53935;
+$red-700:   #D32F2F;
+$red-800:   #C62828;
+$red-900:   #B71C1C;
+$red-A100:  #FF8A80;
+$red-A200:  #FF5252;
+$red-A400:  #FF1744;
+$red-A700:  #D50000;
+
+
+$pink-50:   #FCE4EC;
+$pink-100:  #F8BBD0;
+$pink-200:  #F48FB1;
+$pink-300:  #F06292;
+$pink-400:  #EC407A;
+$pink-500:  #E91E63;
+$pink-600:  #D81B60;
+$pink-700:  #C2185B;
+$pink-800:  #AD1457;
+$pink-900:  #880E4F;
+$pink-A100: #FF80AB;
+$pink-A200: #FF4081;
+$pink-A400: #F50057;
+$pink-A700: #C51162;
+
+
+$purple-50:     #F3E5F5;
+$purple-100:    #E1BEE7;
+$purple-200:    #CE93D8;
+$purple-300:    #BA68C8;
+$purple-400:    #AB47BC;
+$purple-500:    #9C27B0;
+$purple-600:    #8E24AA;
+$purple-700:    #7B1FA2;
+$purple-800:    #6A1B9A;
+$purple-900:    #4A148C;
+$purple-A100:   #EA80FC;
+$purple-A200:   #E040FB;
+$purple-A400:   #D500F9;
+$purple-A700:   #AA00FF;
+
+
+$cyan-50:   #E0F7FA;
+$cyan-100:  #B2EBF2;
+$cyan-200:  #80DEEA;
+$cyan-300:  #4DD0E1;
+$cyan-400:  #26C6DA;
+$cyan-500:  #00BCD4;
+$cyan-600:  #00ACC1;
+$cyan-700:  #0097A7;
+$cyan-800:  #00838F;
+$cyan-900:  #006064;
+$cyan-A100: #84FFFF;
+$cyan-A200: #18FFFF;
+$cyan-A400: #00E5FF;
+$cyan-A700: #00B8D4;
+
+
+$lime-50:     #F9FBE7;
+$lime-100:    #F0F4C3;
+$lime-200:    #E6EE9C;
+$lime-300:    #DCE775;
+$lime-400:    #D4E157;
+$lime-500:    #CDDC39;
+$lime-600:    #C0CA33;
+$lime-700:    #AFB42B;
+$lime-800:    #9E9D24;
+$lime-900:    #827717;
+$lime-A100:   #F4FF81;
+$lime-A200:   #EEFF41;
+$lime-A400:   #C6FF00;
+$lime-A700:   #AEEA00;
+
+
+$yellow-50:     #FFFDE7;
+$yellow-100:    #FFF9C4;
+$yellow-200:    #FFF59D;
+$yellow-300:    #FFF176;
+$yellow-400:    #FFEE58;
+$yellow-500:    #FFEB3B;
+$yellow-600:    #FDD835;
+$yellow-700:    #FBC02D;
+$yellow-800:    #F9A825;
+$yellow-900:    #F57F17;
+$yellow-A100:   #FFFF8D;
+$yellow-A200:   #FFFF00;
+$yellow-A400:   #FFEA00;
+$yellow-A700:   #FFD600;
+
+
+$amber-50:     #FFF8E1;
+$amber-100:    #FFECB3;
+$amber-200:    #FFE082;
+$amber-300:    #FFD54F;
+$amber-400:    #FFCA28;
+$amber-500:    #FFC107;
+$amber-600:    #FFB300;
+$amber-700:    #FFA000;
+$amber-800:    #FF8F00;
+$amber-900:    #FF6F00;
+$amber-A100:   #FFE57F;
+$amber-A200:   #FFD740;
+$amber-A400:   #FFC400;
+$amber-A700:   #FFAB00;
+
+
+$blue-grey-50:      #ECEFF1;    /* black */
+$blue-grey-100:     #CFD8DC;    /* black */
+$blue-grey-200:     #B0BEC5;    /* black */
+$blue-grey-300:     #90A4AE;    /* black */
+$blue-grey-400:     #78909C;    /* white */
+$blue-grey-500:     #607D8B;    /* white */
+$blue-grey-600:     #546E7A;    /* white */
+$blue-grey-700:     #455A64;    /* white */
+$blue-grey-800:     #37474F;    /* white */
+$blue-grey-900:     #263238;    /* white */
+
+
+$black: #000000;
+$white: #FFFFFF;
+
+
+$alpha-black-1: 0.87;
+$alpha-black-2: 0.54;
+$alpha-black-3: 0.26;
+$alpha-black-4: 0.12;
+
+$alpha-white-1: 1.00;
+$alpha-white-2: 0.70;
+$alpha-white-3: 0.30;
+$alpha-white-4: 0.12;
+
+
+$black-divider:     rgba($black, $alpha-black-4);
+$black-hint:        rgba($black, $alpha-black-3);
+$black-secondary:   rgba($black, $alpha-black-2);
+$black-text:        rgba($black, $alpha-black-1);
+
+$black-disabled:    $black-hint;
+$black-icon:        $black-secondary;
+
+
+$white-divider:     rgba($white, $alpha-white-4);
+$white-hint:        rgba($white, $alpha-white-3);
+$white-secondary:   rgba($white, $alpha-white-2);
+$white-text:        rgba($white, $alpha-white-1);
+
+$white-disabled:    $white-hint;
+$white-icon:        $white-secondary;

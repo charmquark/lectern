@@ -66,28 +66,21 @@ namespace :lectern do
 
 
     def compile(components)
-        puts " * Will be including these components: #{components.join(', ')}"
-        puts " * Compiling javascripts..."
+        puts " * Compiling javascript..."
         compile_js(components);
-        puts " * Compiling stylesheets..."
+        puts " * Compiling stylesheet..."
         compile_css(components);
     end
 
 
     def compile_css(components)
-        template = '@import "lectern.scss";'
-        components.each do |comp|
-            template += "\n@import 'lectern.#{comp}.scss';"
-        end
-        sass = Sass::Engine.new template,
+        sass = Sass::Engine.new IO.read('scss/lectern.scss'),
             cache: true,
             load_paths: ['./scss'],
             style: :nested,
             syntax: :scss
-        puts " * \tbuild/css/lectern.css"
         IO.write 'build/css/lectern.css', sass.render
-        sass.options[:style] = :compact
-        puts " * \tbuild/css/lectern.min.css"
+        sass.options[:style] = :compressed
         IO.write 'build/css/lectern.min.css', sass.render
 
         sass = Sass::Engine.new IO.read('demo/scss/demo.scss'),
@@ -95,27 +88,37 @@ namespace :lectern do
             load_paths: ['./demo/scss'],
             style: :compact,
             syntax: :scss
-        puts " * \tdemo/css/demo.css"
         IO.write 'demo/css/demo.css', sass.render
     end
 
 
     def compile_js(components)
-        # compile core
-        compile_js_module '', 'build/js/lectern.js', 'lectern'
+#         # compile core
+#         compile_js_module '', 'build/js/lectern.js', 'lectern'
+#         components.each do |comp|
+#             compile_js_module comp
+#         end
+
+        File.unlink 'tmpfile' if File.exists? 'tmpfile'
+        tmpfile = File.open 'tmpfile', 'a+'
+        IO.copy_stream 'coffee/lectern.coffee', tmpfile
         components.each do |comp|
-            compile_js_module comp
+            puts " * \tincluding: #{comp}"
+            IO.copy_stream "coffee/lectern.#{comp}.coffee", tmpfile
         end
+        tmpfile.close
+        IO.write 'build/js/lectern.js', CoffeeScript.compile(IO.read(tmpfile))
+        File.unlink 'tmpfile'
     end
 
 
-    def compile_js_module(canon, dest = nil, modfile = nil)
-        modfile = "lectern.#{canon}" if modfile.nil?
-        src = "coffee/#{modfile}.coffee"
-        dest = "build/js/#{modfile}.js" if dest.nil?
-        puts " * \t#{dest}"
-        IO.write dest, CoffeeScript.compile(IO.read(src))
-    end
+#     def compile_js_module(canon, dest = nil, modfile = nil)
+#         modfile = "lectern.#{canon}" if modfile.nil?
+#         src = "coffee/#{modfile}.coffee"
+#         dest = "build/js/#{modfile}.js" if dest.nil?
+#         puts " * \t#{dest}"
+#         IO.write dest, CoffeeScript.compile(IO.read(src))
+#     end
 
 end
 

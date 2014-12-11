@@ -1,0 +1,103 @@
+header,
+footer {
+    .inner {
+        @extend %_content_width;
+    }
+}
+
+
+header {
+    @extend %_matshadow_3;
+    @include _position_edge(fixed, top);
+
+    background-color: $color-primary;
+    color: $white-text;
+    text-align: center;
+
+    height: $header-height;
+
+    z-index: 300;
+
+
+    .inner {
+        @extend %_pfix;
+
+        font-size: $header-height / 4;
+        line-height: 2;
+
+        h1 {
+            font-size: 150%;
+            line-height: 1.5;
+            margin: 0px;
+
+
+            &.solo {
+                font-size: 200%;
+                line-height: 2;
+            }
+        }
+    }
+}
+
+
+main {
+    @extend %_content_width;
+
+    padding: ($header-height + $gap-medium) 0px ($footer-height + $gap-medium) 0px;
+
+    z-index: 0;
+}
+
+
+footer {
+    @extend %_matshadow_3;
+    @include _position_edge(fixed, bottom);
+
+    background-color: $color-primary;
+    color: $white-text;
+    text-align: center;
+
+    height: $footer-height;
+
+    font-size: $footer-height / 2;
+    line-height: 2;
+
+    z-index: 300;
+
+
+    .copyright { display: block; }
+}
+
+
+section.example {
+    @extend %_bg_primary_lite, %_matshadow_1, %_radius_small, %_width_full;
+
+    padding: $gap-small;
+
+    position: relative;
+}
+
+
+section.code {
+    margin-top: $gap-medium;
+
+    position: relative;
+
+    overflow: hidden;
+
+    .lectern-source-container {
+        @extend %_bg_accent, %_matshadow_1, %_radius_small, %_width_full;
+
+        position: relative;
+    }
+
+    .lectern-source-module {
+        @extend %_divider_border;
+
+        font-weight: bold;
+
+        margin: $gap-medium;
+
+        overflow: auto;
+    }
+}

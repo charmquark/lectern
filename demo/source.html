@@ -14,22 +14,30 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <script src="../build/js/lectern.js" type="text/javascript"></script>
-    <script src="../build/js/lectern.source.js" type="text/javascript"></script>
-    <script src="../build/js/lectern.tabs.js" type="text/javascript"></script>
+
+    <script id="simple-script" data-drop-indent="4">
+        $(function() {
+            var example = $('#simple-html > pre');
+            var dup = example.clone();
+            dup.lectern('source');
+            example.replaceWith(dup);
+        });
+    </script>
 
     <script>
         $(function() {
-            $('.demo-source').lectern('source');
             $('.doc-tabs').lectern('tabs');
+            Lectern.initiate();
         });
     </script>
 </head>
 
 <body id="demo-source">
     <header>
-        <h1>Lectern.Source Component Demo</h1>
-
-        <p>Add SourceView elements to a page to peek at the code behind the curtain.</p>
+        <div class="inner">
+            <h1>Lectern.Source Component Demo</h1>
+            <span>Peek at the code behind the curtain.</span>
+        </div>
     </header>
 
     <main>
@@ -38,14 +46,12 @@
                 <li data-tab="Simple Example">
                     <section>
                         <p>The minimum to get a working SourceView. It is, incidentally, showing
-                            itself!</p>
+                            itself!  The code is slightly more complicated than it would normally
+                            need to be, to prevent it showing its altered self.</p>
                     </section>
 
                     <section id="simple-html" class="example" data-drop-indent="24">
-                        <pre
-                            data-lectern-source
-                            data-modules="#simple-html"
-                        ></pre>
+                        <pre data-modules="#simple-html, #simple-script"></pre>
                     </section>
                 </li>
 
@@ -60,14 +66,7 @@
                                     )
                                 </div>
                                 <div>
-                                <span class="subj">$(containers)</span>.lectern(
-                                        'source',
-                                        'create',
-                                        <span class="opt">{options}</span>
-                                    )
-                                </div>
-                                <div>
-                                    new Lectern.Source.SourceView(
+                                    new Lectern.SourceView(
                                         <span class="subj">$(single container)</span>,
                                         <span class="opt">{options}</span>
                                     )
@@ -102,13 +101,13 @@
 
                                         <dt>ignoreData <span class="default">false</span></dt>
                                         <dd>
+                                            <p>If enabled, Lectern will not read data attributes to
+                                                set any options. This is useful if there is a
+                                                conflict with another library.</p>
                                         </dd>
 
                                         <dt>modules <span class="default">null</span></dt>
                                         <dd>
-                                            <p>If enabled, Lectern will not read data attributes to
-                                                set any options. This is useful if there is a
-                                                conflict with another library.</p>
                                         </dd>
                                     </dl>
                                 </li>
@@ -137,7 +136,9 @@
     </main>
 
     <footer>
-        <p>Copyright &copy; 2014 Invironz, Christopher Nicholson-Sauls</p>
+        <div class="inner">
+            <span>Copyright &copy; 2014 Invironz, Christopher Nicholson-Sauls</span>
+        </div>
     </footer>
 </body>
 

@@ -1,0 +1,99 @@
+%_bg_accent { background-color: $color-accent-background-lite; }
+
+%_bg_accent_dark { background-color: $color-accent-background-dark; }
+
+
+%_bg_primary {
+    background-color: $color-primary;
+    color: $black-text;
+}
+
+%_bg_primary_lite {
+    background-color: $color-primary-lite;
+    color: $black-text;
+}
+
+
+%_block { display: block; }
+
+
+%_circular { border-radius: 50%; }
+
+
+%_clearfix {
+    &:before,
+    &:after {
+        content: " ";
+
+        display: table;
+    }
+
+    &:after { clear: both; }
+}
+
+
+%_content_width {
+    @extend %_width_full;
+    @include _margin_center(0px);
+
+    max-width: $content-width;
+
+    position: relative;
+}
+
+
+%_divider_border { border: 1pt $black-divider solid; }
+
+
+%_font_primary { font-family: 'Ubuntu', sans-serif; }
+
+%_font_secondary { font-family: 'Stint Ultra Condensed', sans-serif; }
+
+
+%_margin_center { @include _margin_center(0px); }
+
+
+%_matshadow_1 { @include _matshadow(0px, 2px, 2px, 0px); }
+
+%_matshadow_2 { @include _matshadow(0px, 2px, 5px, 1px); }
+
+%_matshadow_3 { @include _matshadow(0px, 3px, 8px, 1px); }
+
+%_matshadow_4 { @include _matshadow(0px, 3px, 11px, 2px); }
+
+%_matshadow_5 { @include _matshadow(0px, 4px, 14px, 2px); }
+
+%_matshadow_6 { @include _matshadow(0px, 4px, 17px, 3px); }
+
+%_matshadow_7 { @include _matshadow(0px, 5px, 20px, 3px); }
+
+%_matshadow_8 { @include _matshadow(0px, 5px, 23px, 4px); }
+
+%_matshadow_9 { @include _matshadow(0px, 6px, 26px, 5px); }
+
+
+%_pfix {
+    > p {
+        &:first-child { margin-top: 0px; }
+        &:last-child { margin-bottom: 0px; }
+    }
+}
+
+
+%_position_absfill { @include _position_fill; }
+
+
+%_position_fixfill { @include _position_fill(fixed); }
+
+
+%_radius_small  { border-radius: $radius-small;     }
+%_radius_medium { border-radius: $radius-medium;    }
+%_radius_large  { border-radius: $radius-large;     }
+
+
+%_text_center { text-align: center; }
+
+%_text_justify { text-align: justify; }
+
+
+%_width_full { width: 100%; }

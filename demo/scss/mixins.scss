@@ -1,0 +1,35 @@
+@mixin _margin_center($vertical) {
+    margin: $vertical auto;
+}
+
+
+@mixin _matshadow($x, $y, $blur, $spread, $color: $black-secondary) {
+    box-shadow: $x $y $blur $spread $color;
+}
+
+
+@mixin _position_edge($pos, $edge, $spacing: 0px) {
+    position: $pos;
+    @if $edge != bottom { top: $spacing; }
+    @if $edge != top { bottom: $spacing; }
+    @if $edge != right { left: $spacing; }
+    @if $edge != left { right: $spacing; }
+}
+
+
+@mixin _position_fill($pos: absolute) {
+    position: $pos;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+
+@mixin _transform($trans) {
+    -moz-transform: $trans;
+    -ms-transform: $trans;
+    -webkit-transform: $trans;
+    transform: $trans;
+}
+

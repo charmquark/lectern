@@ -1,0 +1,58 @@
+$content-width: 1000px;
+
+@import 'vars_colors.scss';
+
+/*
+ * Color Palette
+ *      Guideline:
+ *          Primary:    500
+ *              lite    100
+ *              dark    700
+ *
+ *          Accent:     A200
+ *              lite    A100
+ *              dark    A400
+ */
+                                        /* fg suggestion */
+$color-primary:         $cyan-500;    /* white */
+$color-primary-lite:    $cyan-100;    /* black */
+$color-primary-dark:    $cyan-700;    /* white */
+
+$color-accent:          $amber-A200;     /* black */
+$color-accent-lite:     $amber-A100;     /* black */
+$color-accent-dark:     $amber-A400;     /* black */
+
+$color-background:      $blue-grey-50;
+$color-foreground:      $black-text;
+
+$color-background-dark: $blue-grey-100;
+
+$color-accent-background-lite:  rgba($color-accent-lite, $alpha-white-3);
+$color-accent-background-dark:  rgba($color-accent-dark, $alpha-white-3);
+
+
+/*
+ * Spacing
+ */
+
+$gap-mini:      5px;
+$gap-small:     10px;
+$gap-medium:    20px;
+$gap-large:     40px;
+
+
+/*
+ * Other
+ */
+
+$radius-small:  $gap-mini;
+$radius-medium: $gap-small;
+$radius-large:  $gap-medium;
+
+
+/*
+ * Specific values
+ */
+
+$header-height: $gap-medium * 4;
+$footer-height: $gap-medium * 2;

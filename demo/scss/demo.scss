@@ -1,59 +1,19 @@
-*,
-*:before,
-*:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
+@import 'vars.scss';
+@import 'functions.scss';
+@import 'mixins.scss';
+@import 'extendables.scss';
+
+@import 'common.scss';
+@import 'layout.scss';
+/*@import 'content.scss';*/
+
+
+
+
 
 
 @import 'demo.slider.scss';
 @import 'demo.tabs.scss';
-
-
-header,
-footer,
-main {
-    width: 100%;
-    max-width: 1000px;
-
-    margin: 0px auto;
-
-    position: relative;
-}
-
-
-footer {
-    border-top: 1pt #333 solid;
-
-    margin-top: 1em;
-}
-
-
-section.example {
-    border: 2pt #d8d8d8 dashed;
-    border-radius: 1em;
-
-    margin: 2em 0em;
-    padding: 2em;
-
-    position: relative;
-}
-
-
-section.code {
-    .lectern-source-module {
-        background-color: #fffff0;
-        border: 2pt #cc9 solid;
-        color: #330;
-        font-weight: bold;
-
-        margin: 1em 0em;
-        padding: 0.125em 0.25em;
-
-        overflow: auto;
-    }
-}
 
 
 body#demo-index {
@@ -64,12 +24,18 @@ body#demo-index {
         padding: 0px;
 
         li {
-            background-color: #f8f8f8;
-            border: 1pt #333 solid;
-            border-radius: 0.5em;
+            @extend %_bg_primary, %_matshadow_1, %_radius_small;
 
-            margin: 2em 0em;
-            padding: 2em;
+            width: ($content-width / 2) - ($gap-medium * 3);
+            height: ((($content-width / 2) - ($gap-medium * 3)) / 4) * 3;
+
+            margin: $gap-medium;
+            padding: $gap-medium;
+
+            position: relative;
+
+            float: left;
+            overflow: auto;
 
             &:after {
                 content: "";
@@ -78,23 +44,22 @@ body#demo-index {
                 display: block;
             }
 
-            a {
-                color: #69c;
-                text-decoration: none;
 
-                font-size: 1.2em;
+            h2 {
+                text-align: center;
+            }
 
-                &:hover {
-                    color: #369;
-                }
 
-                img {
-                    -moz-filter: drop-shadow(4px 4px 8px #484848);
-                    -webkit-filter: drop-shadow(4px 4px 8px #484848);
-                    filter: drop-shadow(4px 4px 8px #484848);
+            img {
+                -moz-filter: drop-shadow(4px 4px 8px #484848);
+                -webkit-filter: drop-shadow(4px 4px 8px #484848);
+                filter: drop-shadow(4px 4px 8px #484848);
 
-                    float: right;
-                }
+                max-width: 100%;
+
+                margin-bottom: $gap-small;
+
+                display: block;
             }
         }
     }
@@ -103,7 +68,7 @@ body#demo-index {
 
 .doc-tabs {
     .doc-tabs {
-        margin-top: 1em;
+        border-top: 1px rgba($color-accent-lite, $alpha-white-4) solid;
     }
 
     > .lectern-tabs-canvas {
@@ -119,21 +84,15 @@ body#demo-index {
     }
 
     > .lectern-tabs-tabbar {
-        background-color: #f0f0f0;
-        border: 1pt #333 solid;
-        border-radius: 0.375em;
+        @extend %_bg_primary_lite;
 
-        padding: 0.5em;
 
         > .lectern-tabs-tab {
-            background-color: #d8d8d8;
-            border: 1pt #333 solid;
-            border-radius: 0.375em;
             color: #333;
 
-            font-size: 0.8em;
-            margin-right: 0.75em;
-            padding: 0.25em 0.5em;
+            font-size: 80%;
+            line-height: 1;
+            padding: $gap-medium;
 
             transition:
                 background  0.5s,
@@ -142,11 +101,12 @@ body#demo-index {
                 color       0.5s
             ;
 
+            &:hover {
+                background-color: $color-accent-lite;
+            }
+
             &.lectern-tabs-active {
-                background-color: #fff;
-                border-color: #fff;
-                box-shadow: 0px 0px 0em 0.2em #9cf;
-                color: #000;
+                background-color: $color-accent-dark;
             }
         }
     }

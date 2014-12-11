@@ -1,174 +1,108 @@
-self =
-    autoQueue:      '[data-lectern-slider]'
-    canon:          'slider'
-    defaultAction:  'create'
-    name:           'Slider'
+do ->
+
+    Lectern.addComponent class Slider extends Lectern.FrameCanvasComponentBase
+
+        @_canon:                'slider'
+        @_dataAttrOptions:      ['duration', 'easing', 'indexClasses', 'wrapAround']
+        @_defaults:
+            classes:
+                active:         'lectern-slider-active'
+                canvas:         'lectern-slider-canvas'
+                caption:        'lectern-slider-caption'
+                container:      'lectern-slider-container'
+                frame:          'lectern-slider-frame'
+                hidden1:        'lectern-slider-hidden1'
+                hidden2:        'lectern-slider-hidden2'
+                navigator:      'lectern-slider-navigator'
+            queries:
+                canvas:         '> ul'
+                caption:        '> span'
+            states:
+                active:
+                    opacity:    1.0
+                    left:       '0px'
+                    right:      '0px'
+                hidden1:
+                    left:       '100%'
+                    right:      '-100%'
+                hidden2:
+                    left:       '-100%'
+                    right:      '100%'
+            duration:           500
+            easing:             'swing'
+            indexClasses:       false
+            wrapAround:         true
 
 
-    defaults:
-        classes:
-            active:     'lectern-slider-active'
-            canvas:     'lectern-slider-canvas'
-            caption:    'lectern-slider-caption'
-            container:  'lectern-slider-container'
-            frame:      'lectern-slider-frame'
-            hidden1:    'lectern-slider-hidden1'
-            hidden2:    'lectern-slider-hidden2'
-            navigator:  'lectern-slider-navigator'
-
-        queries:
-            canvas:     '> ul'
-            caption:    '> span'
-            frames:     '> ul > li'
-
-        states:
-            active:
-                opacity:    1.0
-                left:       '0px'
-                right:      '0px'
-
-            hidden1:
-                left:   '100%'
-                right:  '-100%'
-
-            hidden2:
-                left:   '-100%'
-                right:  '100%'
-
-        duration:       500
-        easing:         'swing'
-        indexClasses:   false
-        ignoreData:     false
-        wrapAround:     true
+        constructor: (element, settings)->
+            super element, settings, SliderFrame, SliderNavigateEvent
+            @caption    = this.classyFetch 'caption'
 
 
-    actions:
-        active: ->
-            result = $()
-            this.each (idx, container) ->
-                result = result.add data($ container).active
-            result
+        generateNavigator: ->
+            nav = super 'slider', null
+            if nav?
+                @element.append nav
+                for frame in @frames
+                    frame.nav.click handleNavigatorNodeClick
+            nav
 
-        create: (options) ->
-            this.each (idx, container) ->
-                new Slider $(container), options
 
         next: ->
-            this.each (i, container) ->
-                data($ container).next()
+            active = @active
+            if active != @last
+                this.navigate @frames[active.index + 1]
+            else if @settings.wrapAround
+                this.navigate @first
+
 
         prev: ->
-            this.each (i, container) ->
-                data($ container).prev()
-
-# end self
-
-
-self.Slider = class Slider extends Lectern.base.ComponentMain
-
-    constructor: (container, options) ->
-        super container, getSettings(container, options)
-        data container, this
-
-        @canvas     = this.classyFetch 'canvas'
-        @caption    = this.classyFetch 'caption'
-        @frames     = (new Frame(this, idx, $(elt)) for elt, idx in this.fetch('frames'))
-        @navigator  = generateNavigator this
-        @first      = @frames[0]
-        @last       = @frames[@frames.length - 1]
-        @active     = @first
-
-        @container.addClass @settings.classes.container
-        @container.append @navigator
-        @active.jumpTo 'active'
+            active = @active
+            if active != @first
+                this.navigate @frames[active.index - 1]
+            else if @settings.wrapAround
+                this.navigate @last
 
 
-    navigate: (toFrame) ->
-        if $.type(toFrame) == 'number'
-            toFrame = @frames[toFrame]
-        hideState = if toFrame.index > @active.index then 'hidden2' else 'hidden1'
-        @active.animateTo hideState
-        @active = toFrame.animateTo 'active'
+        navigationTransition: (fromFrame, toFrame, after) ->
+            if fromFrame.index > toFrame.index
+                fromFrame.animateTo 'hidden1'
+                toFrame.animateTo 'active', 'hidden2', after
+            else
+                fromFrame.animateTo 'hidden2'
+                toFrame.animateTo 'active', 'hidden1', after
+            null
 
 
-    next: ->
-        if @active != @last
-            navigate @frames[@active.index + 1]
-        else if @settings.wrapAround
-            navigate @first
+    # end Slider
 
 
-    prev: ->
-        if @active != @first
-            navigate @frames[@active.index - 1]
-        else if @settings.wrapAround
-            navigate @last
-
-# end Slider
+    Slider.Frame = class SliderFrame extends Lectern.FrameBase
 
 
-class Frame
-
-    constructor: (@slider, @index, @element) ->
-        data @element, this
-
-        @navNode    = null
-        @settings   = slider.settings
-        @state      = 'hidden1'
-
-        Lectern.utils.addClasses @settings, element, ['frame', 'hidden1']
-        if @settings.indexClasses
-            element.addClass 'frame-' + @index
+        constructor: (slider, index, element) ->
+            super slider, index, element, 'hidden1'
 
 
-    animateTo: (toState) ->
-        this.setState toState, @settings.duration, @settings.easing
+    # end SliderFrame
 
 
-    jumpTo: (toState) ->
-        this.setState toState, 0, 'linear'
+    Slider.NavigateEvent = class SliderNavigateEvent extends Lectern.EventBase
 
 
-    setState: (toState, duration, easing) ->
-        unless @state == toState
-            @element.animate @settings.states[toState], duration, easing
-
-            @navNode.removeClass   @settings.classes.active if @state == 'active'
-            @navNode.addClass      @settings.classes.active if toState == 'active'
-
-            @element.removeClass @settings.classes[@state]
-                .addClass @settings.classes[toState]
-            @state = toState
-        this
-
-# end Frame
+        @_eventModes:   ['before', 'after']
+        @_eventName:    'Navigate'
 
 
-data = Lectern.generators.data self.canon
+        constructor: (@slider, @fromFrame, @toFrame) ->
 
 
-generateNavigator = (slider) ->
-    nav = $ '<ul></ul>'
-        .addClass slider.settings.classes.navigator
-
-    for frame in slider.frames
-        node = $('<li></li>')
-        data node, frame
-        node.click onNavigatorClick
-        frame.navNode = node
-        nav.append node
-
-    nav
+    # end SliderNavigateEvent
 
 
-getSettings = Lectern.generators.getSettings self.defaults, [
-    'duration', 'easing', 'indexClasses', 'wrapAround'
-]
+    handleNavigatorNodeClick = (event) ->
+        frame = $(event.target).data('slider-frame')
+        if frame?
+            frame.container.navigate frame
+        null
 
-
-onNavigatorClick = (event) ->
-    frame = data $(event.currentTarget)
-    frame.slider.navigate frame
-
-
-Lectern.addComponent self

@@ -1,0 +1,33 @@
+@import url('http://fonts.googleapis.com/css?family=Ubuntu|Stint+Ultra+Condensed');
+
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+
+body {
+    background-color: rgba($color-background, $alpha-white-4);
+    color: $color-foreground;
+
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    margin: 0px;
+}
+
+
+a {
+    color: $color-accent;
+    text-decoration: none;
+
+    &:hover { color: $color-accent-dark; }
+
+    &:active { color: $color-accent-lite; }
+}
+
+
+._clearfix { @extend %_clearfix; }

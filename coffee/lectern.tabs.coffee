@@ -1,180 +1,119 @@
-self = 
+do ->
 
-    autoQueue:      '[data-lectern-tabs]'
-    canon:          'tabs'
-    defaultAction:  'create'
-    name:           'Tabs'
+    Lectern.addComponent class TabView extends Lectern.FrameCanvasComponentBase
 
-
-    defaults:
-        classes: 
-            active:     'lectern-tabs-active'
-            canvas:     'lectern-tabs-canvas'
-            container:  'lectern-tabs-container'
-            frame:      'lectern-tabs-frame'
-            inactive:   'lectern-tabs-inactive'
-            tab:        'lectern-tabs-tab'
-            tabBar:     'lectern-tabs-tabbar'
-
-        queries:
-            canvas:     '> ul'
-            frames:     '> ul > li'
-            tab:        '> .tab'
-
-        states:
-            active:
-                opacity:    1
-
-            inactive:
-                opacity:    0
-
-        duration:       200
-        easing:         'swing'
-        height:         null
-        indexClasses:   false
-        ignoreData:     false
+        @_canon:            'tabs'
+        @_dataAttrOptions:  ['duration', 'easing', 'height', 'indexClasses']
+        @_defaults:
+            classes: 
+                active:     'lectern-tabs-active'
+                canvas:     'lectern-tabs-canvas'
+                container:  'lectern-tabs-container'
+                frame:      'lectern-tabs-frame'
+                inactive:   'lectern-tabs-inactive'
+                tab:        'lectern-tabs-tab'
+                tabBar:     'lectern-tabs-tabbar'
+            queries:
+                canvas:     '> ul'
+                tab:        '> .tab'
+            states:
+                active:
+                    opacity:    1
+                inactive:
+                    opacity:    0
+            duration:       200
+            easing:         'swing'
+            height:         null
+            indexClasses:   false
+            ignoreData:     false
 
 
-    actions:
-        create: (options) ->
-            this.each (idx, container) ->
-                new TabView $(container), options
+        constructor: (element, settings) ->
+            super element, settings, TabFrame, TabNavigateEvent
+            this.addClass 'tabBar', @navigator
+            this.findFrameHeight()
+
+
+        findFrameHeight: ->
+            frames = @frames
+            if @settings.height?
+                height = @settings.height
+            else
+                height = 0
+                for f in frames
+                    fh = f.element.outerHeight()
+                    height = fh if fh > height
+            @element.height height + @navigator.outerHeight()
+            @canvas.innerHeight height
+            for f in frames
+                f.element.css {'max-height': height}
             this
 
 
-class Frame
-
-    constructor: (@tabView, @index, @element) ->
-        data element, this
-
-        @tab        = null
-        @settings   = tabView.settings
-        @state      = ''
-
-        element.addClass @settings.classes.frame
-        if @settings.indexClasses
-            element.addClass 'frame-' + @index
+        generateNavigator: ->
+            nav = super 'tab', ['tab', 'inactive']
+            if nav?
+                @element.prepend nav
+                for frame in @frames
+                    frame.nav.html frame.label
+                    frame.nav.click handleTabClick
+            nav
 
 
-    animateTo: (toState) ->
-        this.setState toState, @settings.duration, @settings.easing
+        navigationTransition: (fromFrame, toFrame, after) ->
+            fromFrame.animateTo 'inactive', null
+            toFrame.animateTo 'active', null, after
 
 
-    jumpTo: (toState) ->
-        this.setState toState, 0, 'linear'
+    # end TabView
 
 
-    setState: (toState, duration, easing) ->
-        unless @state == toState
-            @element.animate @settings.states[toState], duration, easing
-
-            activeClass     = @settings.classes.active
-            inactiveClass   = @settings.classes.inactive
-
-            if toState == 'active'
-                remove  = inactiveClass
-                add     = activeClass
-            else
-                remove  = activeClass
-                add     = inactiveClass
-
-            @tab.add @element
-                .removeClass remove
-                .addClass add
-
-            @state = toState
-        this
-
-# end Frame
+    TabView.Frame = class TabFrame extends Lectern.FrameBase
 
 
-self.TabView = class TabView extends Lectern.base.ComponentMain
-
-    constructor: (container, options) ->
-        super container, getSettings(container, options)
-        data container, this
-
-        @canvas = this.classyFetch 'canvas'
-        @frames = (new Frame(this, idx, $(elt)) for elt, idx in this.fetch 'frames')
-        @tabBar = generateTabBar this
-        @active = @frames[0]
-
-        container.addClass @settings.classes.container
-        container.prepend @tabBar
-
-        height = findFrameHeight @settings.height, @frames
-        container.height height + @tabBar.outerHeight()
-        @canvas.innerHeight height
-        for f in @frames
-            f.element.css
-                'max-height': height
-            f.jumpTo 'inactive'
-        @active.jumpTo 'active'
+        constructor: (tabView, index, element) ->
+            super tabView, index, element, 'inactive'
+            this.findLabel()
 
 
-    navigate: (toFrame) ->
-        if $.type(toFrame) == 'number'
-            toFrame = @frames[toFrame]
-        unless @active == toFrame
-            @active.animateTo 'inactive'
-            @active = toFrame.animateTo 'active'
+        findLabel: ->
+            label = @element.data 'tab'
+            unless label?
+                label = $(@container.fetch 'tab', @element)
+                if label?
+                    label = label.remove().html()
+                else
+                    label = index.toString()
+            @label = label
 
 
-# end TabView
+        setState: (toState, duration, easing, callback) ->
+            changed = super
+            if changed
+                if toState == 'active'
+                    @nav.removeClass @settings.classes.inactive
+                else
+                    @nav.addClass @settings.classes.inactive
+            changed
 
 
-data = Lectern.generators.data self.canon
+    # end TabFrame
 
 
-findFrameHeight = (opt, frames) ->
-    return opt if opt?
-    height = 0
-    for f in frames
-        fh = f.element.outerHeight()
-        height = fh if fh > height
-    height
+    TabView.NavigateEvent = class TabNavigateEvent extends Lectern.EventBase
 
 
-findLabel = (settings, element) ->
-    label = element.data 'tab'
-    unless label?
-        label = $(settings.queries.tab, element)
-        if label?
-            label = label.remove().html()
-        else
-            label = frame.index.toString()
-    label
+        @_eventModes:   ['before', 'after']
+        @_eventName:    'Navigate'
 
 
-generateTabBar = (tabView) ->
-    settings = tabView.settings
-    bar = $ '<ul></ul>'
-        .addClass settings.classes.tabBar
-
-    for frame in tabView.frames
-        tab = $ '<li></li>'
-            .addClass   settings.classes.tab
-            .html       findLabel settings, frame.element
-            .click      onTabClick
-
-        if settings.indexClasses
-            tab.addClass 'tab-' + frame.index
-
-        data tab, frame
-        frame.tab = tab
-        bar.append tab
-
-    bar
+        constructor: (@tabView, @fromFrame, @toFrame) ->
 
 
-getSettings = Lectern.generators.getSettings self.defaults, [
-    'duration', 'easing', 'height', 'indexClasses'
-]
+    # end TabNavigateEvent
 
 
-onTabClick = (event) ->
-    frame = data $(event.currentTarget)
-    frame.tabView.navigate frame
+    handleTabClick = (event) ->
+        frame = $(event.currentTarget).data('tab-frame')
+        frame.container.navigate frame
 
-
-Lectern.addComponent self

@@ -1,74 +1,52 @@
 dl.api,
 dl.options {
     code {
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 0.1em rgba(0, 0, 0, 0.2) solid;
-        border-radius: 4px;
-        color: #181878;
+        color: $color-primary-dark;
         font-weight: bold;
-
-        margin: 0em 0.2em;
-        padding: 0.1em;
     }
 
     dd {
-        border: #333 solid;
-        border-radius: 0em 0em 0.5em 0.5em;
-        border-width: 0pt 1pt 1pt 1pt;
+        @extend %_matshadow_1, %_width_full;
+
+        background: $color-background;
+        border-radius: 0px 0px $radius-small $radius-small;
 
         margin: 0em;
-        padding: 0.01em 1em 0em 1em;
+        padding: 0.01em $gap-small $gap-small $gap-small;
     }
 
     dt {
-        background-color: #f4f8fc;
-        border: #333 solid;
-        border-radius: 0.5em 0.5em 0em 0em;
-        border-width: 1pt 1pt 0pt 1pt;
-        font-family: monospace;
+        @extend %_width_full;
+
+        background-color: $color-primary;
+        color: $white-text;
+
+        border-radius: $radius-small $radius-small 0px 0px;
         font-weight: bold;
 
         font-size: 110%;
-
-        margin: 2em 0em 0em 0em;
-        padding: 1em;
+        margin: $gap-medium 0px 0px 0px;
+        padding: $gap-small;
 
         > div {
-            margin-bottom: 0.5em;
+            margin-bottom: $gap-small;
 
             &:last-child {
-                margin-bottom: 0em;
+                margin-bottom: 0px;
             }
         }
 
         .default,
         .opt,
         .subj {
+            color: $white-secondary;
             font-style: italic;
-            vertical-align: middle;
 
-            height: 1em;
-
-            font-size: 0.8em;
-            line-height: 0.8em;
-            margin: 0em 0.25em;
-
-            display: inline-block;
+            margin: 0em $gap-small;
         }
     }
 }
 
-dl.api {
-    dt {
-        .opt {
-            color: #484848;
-        }
-
-        .subj {
-            color: #663333;
-        }
-    }
-}
 
 dl.options {
     dt {
@@ -79,15 +57,9 @@ dl.options {
         }
 
         .default {
-            color: #181878;
-
             &:before {
                 content: ": ";
             }
-        }
-
-        .subj {
-            color: #663333;
         }
     }
 }
