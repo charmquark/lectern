@@ -63,6 +63,7 @@ do ->
         navigationTransition: (fromFrame, toFrame, after) ->
             fromFrame.animateTo 'inactive', null
             toFrame.animateTo 'active', null, after
+            null
 
 
     # end TabView
